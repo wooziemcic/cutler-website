@@ -1,0 +1,406 @@
+/* =========================
+   Cutler Phase 2A (Wave 1) widgets
+   Namespaced styles to avoid touching Phase 1 styling.
+========================= */
+
+:root {
+  --ccm-widget-border: rgba(26, 26, 26, 0.12);
+  --ccm-widget-bg: #ffffff;
+  --ccm-widget-bg-alt: rgba(0, 0, 0, 0.02);
+  --ccm-widget-text: #1a1a1a;
+  --ccm-widget-muted: rgba(26, 26, 26, 0.72);
+  /* Uses the existing Cutler deep plum seen in Phase 1 accents */
+  --ccm-widget-accent: #4b2142;
+}
+
+.ccm-widget {
+  border: 1px solid var(--ccm-widget-border);
+  border-radius: 14px;
+  background: var(--ccm-widget-bg);
+  padding: 18px;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.03);
+}
+
+.ccm-widget + .ccm-widget {
+  margin-top: 18px;
+}
+
+.ccm-widget-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.ccm-widget-title {
+  margin: 0;
+  font-size: 1.05rem;
+  letter-spacing: 0.01em;
+}
+
+.ccm-widget-subtitle {
+  margin: 6px 0 0 0;
+  color: var(--ccm-widget-muted);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.ccm-widget-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 18px;
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .ccm-widget-grid { grid-template-columns: 1fr; }
+}
+
+.ccm-viz {
+  min-height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ccm-widget-bg-alt);
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.06);
+  padding: 10px;
+}
+
+.ccm-panel {
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.08);
+  padding: 12px 12px 10px;
+  background: #fff;
+}
+
+.ccm-panel h4 {
+  margin: 0 0 6px 0;
+  font-size: 0.95rem;
+}
+
+.ccm-panel p {
+  margin: 0 0 8px 0;
+  color: var(--ccm-widget-muted);
+  font-size: 0.93rem;
+  line-height: 1.45;
+}
+
+.ccm-kv {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+.ccm-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(0,0,0,0.10);
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 0.88rem;
+  color: var(--ccm-widget-text);
+  background: #fff;
+}
+
+.ccm-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--ccm-widget-accent);
+  display: inline-block;
+}
+
+.ccm-legend {
+  display: grid;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.ccm-legend button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+  border: 1px solid rgba(0,0,0,0.10);
+  border-radius: 12px;
+  padding: 10px 12px;
+  background: #fff;
+  color: var(--ccm-widget-text);
+  cursor: pointer;
+}
+
+.ccm-legend button:focus-visible {
+  outline: 3px solid rgba(75, 33, 66, 0.25);
+  outline-offset: 2px;
+}
+
+.ccm-legend .ccm-legend-left {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ccm-legend .ccm-legend-pct {
+  font-variant-numeric: tabular-nums;
+  color: var(--ccm-widget-muted);
+}
+
+.ccm-widget-footer {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(0,0,0,0.08);
+  color: var(--ccm-widget-muted);
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+
+.ccm-tabs {
+  display: inline-flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.ccm-tab {
+  border: 1px solid rgba(0,0,0,0.12);
+  background: #fff;
+  border-radius: 999px;
+  padding: 7px 12px;
+  cursor: pointer;
+  font-size: 0.88rem;
+  color: var(--ccm-widget-text);
+}
+
+.ccm-tab[aria-selected="true"] {
+  border-color: rgba(75,33,66,0.35);
+  box-shadow: 0 0 0 3px rgba(75,33,66,0.12);
+}
+
+.ccm-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Donut + segment list */
+.ccm-donut { max-width: 100%; height: auto; }
+.ccm-donut path { opacity: 0.92; transition: opacity 160ms ease, transform 160ms ease; transform-origin: center; }
+.ccm-donut path.is-active { opacity: 1; }
+.ccm-donut path:focus-visible { outline: none; filter: drop-shadow(0 0 0 rgba(0,0,0,0)); }
+
+.ccm-donut-center { font-size: 18px; fill: var(--ccm-widget-text); font-weight: 600; }
+.ccm-donut-center-sub { font-size: 12px; fill: var(--ccm-widget-muted); }
+
+.ccm-seg-list { display: grid; gap: 8px; margin-top: 10px; }
+.ccm-seg-btn {
+  display: grid;
+  grid-template-columns: 12px 1fr auto;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+  border: 1px solid rgba(0,0,0,0.10);
+  border-radius: 12px;
+  padding: 10px 12px;
+  background: #fff;
+  cursor: pointer;
+}
+.ccm-seg-btn[aria-pressed="true"] { box-shadow: 0 0 0 3px rgba(75,33,66,0.12); border-color: rgba(75,33,66,0.28); }
+.ccm-seg-label { color: var(--ccm-widget-text); font-size: 0.92rem; }
+.ccm-seg-pct { color: var(--ccm-widget-muted); font-variant-numeric: tabular-nums; }
+
+.ccm-swatch { width: 10px; height: 10px; border-radius: 999px; display: inline-block; }
+
+.ccm-panel-head { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 8px; }
+.ccm-panel-label { margin: 8px 0 6px 0; font-size: 0.85rem; color: var(--ccm-widget-muted); letter-spacing: 0.01em; }
+.ccm-panel-muted { margin: 0 0 8px 0; color: var(--ccm-widget-muted); font-size: 0.93rem; line-height: 1.45; }
+.ccm-panel-list { margin: 0 0 8px 18px; color: var(--ccm-widget-muted); font-size: 0.93rem; }
+
+/* Lifecycle track */
+.ccm-life-track { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.ccm-life-node {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid rgba(0,0,0,0.10);
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 0.88rem;
+}
+.ccm-life-node.is-active { box-shadow: 0 0 0 3px rgba(75,33,66,0.12); border-color: rgba(75,33,66,0.28); }
+.ccm-life-dot { width: 10px; height: 10px; border-radius: 999px; background: var(--ccm-widget-accent); display: inline-block; }
+.ccm-life-connector { width: 24px; height: 1px; background: rgba(0,0,0,0.20); display: inline-block; }
+
+/* Performance */
+.ccm-mode { display: inline-flex; gap: 8px; flex-wrap: wrap; }
+.ccm-mode button {
+  border: 1px solid rgba(0,0,0,0.12);
+  background: #fff;
+  border-radius: 999px;
+  padding: 7px 12px;
+  cursor: pointer;
+  font-size: 0.88rem;
+}
+.ccm-mode button[aria-pressed="true"] { box-shadow: 0 0 0 3px rgba(75,33,66,0.12); border-color: rgba(75,33,66,0.28); }
+
+.ccm-legend-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid rgba(0,0,0,0.10);
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 0.88rem;
+}
+
+/* =========================
+   Phase 2B: Widget rendering fixes (Astro islands)
+   Goal: keep Phase 2A styles intact, only ensure SVG renders with non-zero height.
+========================= */
+
+/* Ensure viz containers have a stable render area */
+.ccm-widget[data-ccm-widget="performance-chart"] .ccm-viz,
+.ccm-widget[data-ccm-widget="bank-lifecycle"] .ccm-viz,
+.ccm-widget[data-ccm-widget="allocation-donut"] .ccm-viz {
+  width: 100%;
+  min-height: 260px;
+}
+
+/* Allocation donut: keep centered and responsive */
+.ccm-widget[data-ccm-widget="allocation-donut"] .ccm-viz {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ccm-widget[data-ccm-widget="allocation-donut"] svg {
+  max-width: 100%;
+}
+
+/*
+  Critical fix:
+  Inline SVG can end up with computed height = 0 in some layouts when `height:auto`.
+  Force a real height inside widget viz containers so charts are visible.
+*/
+.ccm-widget[data-ccm-widget="performance-chart"] .ccm-viz > svg,
+.ccm-widget[data-ccm-widget="allocation-donut"] .ccm-viz > svg {
+  display: block;
+  width: 100%;
+  height: 260px;
+}
+
+/* Bank lifecycle uses HTML (no SVG). Keep track aligned top-left */
+.ccm-widget[data-ccm-widget="bank-lifecycle"] .ccm-viz {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  overflow: visible;
+}
+
+.ccm-legend-label { color: var(--ccm-widget-text); }
+
+/* Reveal + subtle animation */
+.ccm-reveal { opacity: 0; transform: translateY(8px); transition: opacity 220ms ease, transform 220ms ease; }
+.ccm-reveal.is-visible { opacity: 1; transform: translateY(0); }
+.ccm-anim-in { animation: ccmFadeIn 220ms ease both; }
+@keyframes ccmFadeIn { from { opacity: 0.001; } to { opacity: 1; } }
+
+/* Protect widget SVG drawing from global SVG resets */
+.ccm-widget[data-ccm-widget="performance-chart"] svg *,
+.ccm-widget[data-ccm-widget="allocation-donut"] svg * {
+  vector-effect: non-scaling-stroke;
+}
+
+.ccm-widget[data-ccm-widget="performance-chart"] svg polyline,
+.ccm-widget[data-ccm-widget="performance-chart"] svg line,
+.ccm-widget[data-ccm-widget="performance-chart"] svg path {
+  stroke: currentColor;
+  stroke-opacity: 1;
+}
+
+/* Ensure widget chart ink is Cutler purple by default */
+.ccm-widget[data-ccm-widget="performance-chart"] .ccm-viz {
+  color: var(--ccm-purple-900);
+}
+
+/* If any global rule sets svg * { stroke: none !important } this will beat it */
+.ccm-widget[data-ccm-widget="performance-chart"] svg polyline {
+  stroke: var(--ccm-purple-900) !important;
+  stroke-width: 2.25px !important;
+  fill: none !important;
+}
+
+/* HARD OVERRIDE: undo any global svg reset that sets stroke:none */
+.ccm-widget[data-ccm-widget="performance-chart"] .ccm-viz svg polyline,
+.ccm-widget[data-ccm-widget="performance-chart"] .ccm-viz svg line,
+.ccm-widget[data-ccm-widget="performance-chart"] .ccm-viz svg path {
+  stroke: var(--ccm-purple-900) !important;
+  stroke-opacity: 1 !important;
+  fill: none !important;
+}
+
+.ccm-widget[data-ccm-widget="allocation-donut"] .ccm-viz svg path,
+.ccm-widget[data-ccm-widget="allocation-donut"] .ccm-viz svg circle {
+  stroke: inherit !important; /* donut uses strokes */
+  stroke-opacity: 1 !important;
+}
+
+/* HARD OVERRIDE: ensure widget SVG paint cannot be reset */
+.ccm-widget [data-ccm-viz] svg,
+.ccm-widget [data-ccm-viz] svg * {
+  all: revert !important;
+}
+
+.ccm-widget [data-ccm-viz] svg {
+  display: block !important;
+  width: 100% !important;
+  height: auto;
+  overflow: visible !important;
+}
+
+/* === Phase 2B fix: force SVG ink to render inside CCM widgets === */
+/* Some global SVG resets can neutralize stroke/fill (often via svg * { stroke: none; } or all: unset).
+   This block is narrowly scoped to our widget containers only. */
+
+.ccm-widget [data-ccm-viz] svg {
+  display: block;
+  overflow: visible;
+}
+
+/* Force stroke paint for common SVG primitives used by widgets */
+.ccm-widget [data-ccm-viz] svg polyline,
+.ccm-widget [data-ccm-viz] svg line,
+.ccm-widget [data-ccm-viz] svg path,
+.ccm-widget [data-ccm-viz] svg circle,
+.ccm-widget [data-ccm-viz] svg rect {
+  stroke: var(--ccm-purple-900) !important;
+  stroke-opacity: 1 !important;
+  stroke-width: 2.25px !important;
+  fill: none !important;
+  vector-effect: non-scaling-stroke;
+  shape-rendering: geometricPrecision;
+}
+
+/* Bars need fill, not stroke */
+.ccm-widget [data-ccm-viz] svg rect {
+  fill: var(--ccm-purple-900) !important;
+  stroke: none !important;
+}
+
+
+
+

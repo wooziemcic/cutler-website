@@ -1,0 +1,68 @@
+{
+  "as_of": "2024-06",
+  "title": "Example Investment Portfolio (Illustrative)",
+  "client_profile": "Illustrative allocation shown for discussion and planning context. Actual client portfolios vary.",
+  "segments": [
+    {
+      "key": "domestic_equity",
+      "label": "Domestic Equity",
+      "pct": 35,
+      "role": "Long-term growth engine and inflation-aware return potential.",
+      "typical_holdings": [
+        "Dividend-paying equities",
+        "Select sector exposures where appropriate"
+      ],
+      "primary_risks": [
+        "Equity market volatility",
+        "Company- and sector-specific risk"
+      ]
+    },
+    {
+      "key": "intl_equity",
+      "label": "International Equity",
+      "pct": 20,
+      "role": "Diversification across geographies and business cycles.",
+      "typical_holdings": [
+        "Developed international equities",
+        "Selective exposure to global themes"
+      ],
+      "primary_risks": [
+        "Currency risk",
+        "Political and regulatory risk"
+      ]
+    },
+    {
+      "key": "fixed_income",
+      "label": "Fixed Income",
+      "pct": 35,
+      "role": "Income generation and potential stability during equity drawdowns.",
+      "typical_holdings": [
+        "Investment-grade bonds",
+        "Convertible securities where appropriate"
+      ],
+      "primary_risks": [
+        "Interest-rate risk",
+        "Issuer credit risk",
+        "Liquidity risk in stressed markets"
+      ]
+    },
+    {
+      "key": "reits",
+      "label": "REITs",
+      "pct": 10,
+      "role": "Real-asset exposure and potential income diversification.",
+      "typical_holdings": [
+        "Publicly traded REITs"
+      ],
+      "primary_risks": [
+        "Real estate cycle sensitivity",
+        "Rate sensitivity and refinancing risk"
+      ]
+    }
+  ],
+  "disclosures": [
+    "Illustrative only; not investment advice.",
+    "Actual allocations vary by objectives, constraints, tax considerations, and risk tolerance.",
+    "No guarantee any objective will be achieved. Past performance is not indicative of future results."
+  ]
+}

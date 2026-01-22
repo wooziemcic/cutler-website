@@ -1,0 +1,59 @@
+{
+  "as_of": "2024-06-30",
+  "title": "Investment performance context (net)",
+  "series": [
+    {
+      "key": "cff_net",
+      "label": "Cutler Financials Fund, L.P. (Net)",
+      "type": "fund",
+      "frequency": "annual",
+      "returns": [
+        {
+          "period": "2016",
+          "value": 30.9
+        },
+        {
+          "period": "2017",
+          "value": 18.9
+        },
+        {
+          "period": "2018",
+          "value": 1.0
+        },
+        {
+          "period": "2019",
+          "value": 16.4
+        },
+        {
+          "period": "2020",
+          "value": -18.2
+        },
+        {
+          "period": "2021",
+          "value": 29.9
+        },
+        {
+          "period": "2022",
+          "value": -7.7
+        },
+        {
+          "period": "2023",
+          "value": -2.5
+        },
+        {
+          "period": "2024 YTD",
+          "value": -9.3
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "2016 returns represent performance of the Fund\u2019s bank portfolio sub-account; 2017+ reflect overall Fund performance after strategy revision.",
+    "Returns are presented net of applicable management/performance fees for Class B Limited Partners, as stated in the source materials.",
+    "2024 figure is year-to-date through 06/30/2024."
+  ],
+  "disclosures": [
+    "Past performance is not indicative of future results.",
+    "For informational purposes only. Not investment advice or an offer to buy or sell any security."
+  ]
+}

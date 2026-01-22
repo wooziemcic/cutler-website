@@ -1,0 +1,80 @@
+---
+const path = Astro.url.pathname;
+
+// helper to mark active nav items
+const isActive = (href) => path === href;
+---
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header" data-header>
+  <div class="container header-inner">
+    <!-- FIXED: Home route is "/" not "/index/" -->
+    <a class="brand" href="/" aria-label="Cutler Capital Management home">
+      <span class="brand-mark" aria-hidden="true">C</span>
+      <span class="brand-text">
+        <span class="brand-name">Cutler</span>
+        <span class="brand-sub">Capital Management</span>
+      </span>
+    </a>
+
+    <button
+      class="nav-toggle"
+      type="button"
+      aria-label="Open menu"
+      aria-expanded="false"
+      data-nav-toggle
+    >
+      <span class="nav-toggle-bars" aria-hidden="true"></span>
+    </button>
+
+    <nav class="site-nav" aria-label="Primary" data-nav>
+      <ul class="nav-list">
+        <li>
+          <a href="/philosophy/" class={isActive("/philosophy/") ? "active" : ""}>
+            Philosophy
+          </a>
+        </li>
+
+        <li>
+          <a href="/strategies/" class={isActive("/strategies/") ? "active" : ""}>
+            Investment Strategies
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="/wealth-management/"
+            class={isActive("/wealth-management/") ? "active" : ""}
+          >
+            Wealth Management
+          </a>
+        </li>
+
+        <li>
+          <a href="/research/" class={isActive("/research/") ? "active" : ""}>
+            Research &amp; Insights
+          </a>
+        </li>
+
+        <li>
+          <a href="/people/" class={isActive("/people/") ? "active" : ""}>
+            People
+          </a>
+        </li>
+
+        <li>
+          <a href="/firm/" class={isActive("/firm/") ? "active" : ""}>
+            Firm
+          </a>
+        </li>
+
+        <li>
+          <a class="btn btn-primary" href="/contact/">
+            Contact
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

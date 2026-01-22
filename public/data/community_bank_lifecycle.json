@@ -1,0 +1,88 @@
+{
+  "as_of": "2024-05-22",
+  "title": "Community Bank Lifecycle (Illustrative)",
+  "stages": [
+    {
+      "key": "de_novo",
+      "label": "De Novo",
+      "what_changes": [
+        "Newly formed bank builds deposit base and loan book",
+        "Early financial statements can be noisy; underwriting discipline matters"
+      ],
+      "why_it_matters": "Early-stage growth can be mispriced when coverage is limited.",
+      "what_can_go_wrong": "Credit underwriting errors, funding pressure, or weak local economics can impair outcomes.",
+      "investor_takeaway": "Focus on franchise quality and risk controls, not just growth rate."
+    },
+    {
+      "key": "private",
+      "label": "Privately Traded",
+      "what_changes": [
+        "Ownership remains private; information flow can be uneven",
+        "Liquidity is typically limited"
+      ],
+      "why_it_matters": "Limited liquidity and visibility can contribute to wider valuation discounts.",
+      "what_can_go_wrong": "Limited governance transparency or limited market access can slow progress.",
+      "investor_takeaway": "Assess management quality and balance-sheet resilience."
+    },
+    {
+      "key": "otc",
+      "label": "OTC Ticker",
+      "what_changes": [
+        "Public quotation begins; trading becomes more observable",
+        "Broader investor set can access the name"
+      ],
+      "why_it_matters": "A first step toward improved liquidity and price discovery.",
+      "what_can_go_wrong": "Thin trading can exaggerate volatility and widen spreads.",
+      "investor_takeaway": "Liquidity may improve gradually; underwriting still drives outcomes."
+    },
+    {
+      "key": "otcqx",
+      "label": "OTCQX",
+      "what_changes": [
+        "Higher reporting/qualification standards versus basic OTC",
+        "Potential for improved investor confidence"
+      ],
+      "why_it_matters": "Improved visibility can reduce the perceived 'liquidity discount.'",
+      "what_can_go_wrong": "Regulatory or reporting setbacks can delay progression.",
+      "investor_takeaway": "Structure can help, but fundamentals remain decisive."
+    },
+    {
+      "key": "nasdaq",
+      "label": "NASDAQ",
+      "what_changes": [
+        "Broader distribution and trading access",
+        "Potential increase in institutional participation"
+      ],
+      "why_it_matters": "Listing can improve liquidity and broaden the buyer base.",
+      "what_can_go_wrong": "Listing does not remove cyclical credit risk or rate sensitivity.",
+      "investor_takeaway": "Valuation can change with access, but credit discipline still matters."
+    },
+    {
+      "key": "index",
+      "label": "Index Inclusion",
+      "what_changes": [
+        "Passive flows and broader tracking visibility",
+        "More consistent volume"
+      ],
+      "why_it_matters": "Inclusion can mechanically expand the shareholder base.",
+      "what_can_go_wrong": "Flows can reverse; fundamentals drive long-term results.",
+      "investor_takeaway": "Avoid assuming index effects are permanent."
+    },
+    {
+      "key": "acquired",
+      "label": "Acquired",
+      "what_changes": [
+        "M&A becomes a potential endpoint as footprint and economics improve",
+        "Outcome depends on cycle, buyer appetite, and asset quality"
+      ],
+      "why_it_matters": "M&A can crystallize value, but timing is uncertain.",
+      "what_can_go_wrong": "Deals can be delayed, repriced, or fail in stressed environments.",
+      "investor_takeaway": "Treat M&A as a possibility, not a base case."
+    }
+  ],
+  "disclosures": [
+    "Illustrative framework; not all banks follow this progression.",
+    "Lifecycle progression can stall or reverse; liquidity and valuation improvements are not assured.",
+    "This material is for informational purposes only and does not constitute investment advice."
+  ]
+}
