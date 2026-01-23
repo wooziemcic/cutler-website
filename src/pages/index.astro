@@ -5,7 +5,21 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 <BaseLayout title="Cutler Capital Management">
   <main id="main">
     <!-- HERO -->
-    <section class="hero">
+    <section class="hero hero--video">
+      <!-- Full-bleed background video -->
+      <div class="hero-bg" aria-hidden="true">
+        <video
+          class="hero-video"
+          src="/videos/background.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+        ></video>
+        <div class="hero-scrim" aria-hidden="true"></div>
+      </div>
+
       <div class="container">
         <div class="hero-grid">
           <!-- Left: Editorial positioning -->
@@ -21,178 +35,115 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
             <div class="cta-row">
               <a class="btn btn-primary" href="/contact/">Start a conversation</a>
-              <a class="btn btn-ghost" href="/philosophy/">Our philosophy</a>
-            </div>
-
-            <div class="trust-row">
-              <div class="trust-item">
-                <span class="trust-kpi">Independent</span>
-                <span class="trust-label">Aligned advice and long-term stewardship</span>
-              </div>
-
-              <div class="trust-item">
-                <span class="trust-kpi">Research-led</span>
-                <span class="trust-label">Repeatable underwriting framework</span>
-              </div>
-
-              <div class="trust-item">
-                <span class="trust-kpi">Risk-defined</span>
-                <span class="trust-label">Permanent loss, not day-to-day volatility</span>
-              </div>
             </div>
           </div>
-
-          <!-- Right: “Explore” card -->
-         <!-- Right: Visual + Explore card (institutional) -->
-		<div class="hero-rail">
-		<div class="hero-visual" aria-hidden="true">
-			<!-- Optional image (recommended). Put a file in /public/images/hero.jpg -->
-			<!-- <img src="/images/hero.jpg" alt="" loading="eager" /> -->
-
-			<div class="hero-visual__overlay">
-			<div class="hero-visual__tag">Worcester, MA</div>
-			<div class="hero-visual__caption">Independent, research-led stewardship</div>
-			</div>
-		</div>
-
-		<div class="card hero-explore">
-			<h2>Explore</h2>
-			<p class="muted" style="margin:0 0 1rem 0;">
-			Clear entry points for different client needs and due diligence.
-			</p>
-
-			<div class="seg-grid">
-			<a class="seg" href="/strategies/">
-				<span class="seg-title">Investment strategies</span>
-				<span class="seg-desc">Convertibles, community banks, and real assets.</span>
-			</a>
-
-			<a class="seg" href="/wealth-management/">
-				<span class="seg-title">Wealth management</span>
-				<span class="seg-desc">Planning, allocation design, and implementation.</span>
-			</a>
-
-			<a class="seg" href="/research/">
-				<span class="seg-title">Research &amp; insights</span>
-				<span class="seg-desc">Notes, perspectives, and firm updates.</span>
-			</a>
-			</div>
-
-			<div class="card-note">
-			<p class="small muted" style="margin:0;">
-				For institutional or consultant diligence, we’re happy to share materials in context.
-			</p>
-			</div>
-		</div>
-		</div>
         </div>
       </div>
     </section>
 
-	<!-- PROOF STRIP (trust metrics) -->
-		<section class="proof">
-		<div class="container">
-			<div class="proof-grid">
-			<div class="proof-stat">
-				<div class="proof-number">XX+</div>
-				<div class="proof-label">years investing through cycles</div>
-			</div>
+    <!-- PROOF STRIP (trust metrics) -->
+    <section class="proof">
+      <div class="container">
+        <div class="proof-grid">
+          <div class="proof-stat">
+            <div class="proof-number">20+</div>
+            <div class="proof-label">years investing through cycles</div>
+          </div>
 
-			<div class="proof-stat">
-				<div class="proof-number">$X.XB</div>
-				<div class="proof-label">assets advised / managed*</div>
-			</div>
+          <div class="proof-stat">
+            <div class="proof-number">$300M+</div>
+            <div class="proof-label">assets advised / managed*</div>
+          </div>
 
-			<div class="proof-stat">
-				<div class="proof-number">YY%</div>
-				<div class="proof-label">client retention (multi-year)</div>
-			</div>
+          <div class="proof-stat">
+            <div class="proof-number">YY%</div>
+            <div class="proof-label">client retention (multi-year)</div>
+          </div>
 
-			<div class="proof-stat">
-				<div class="proof-number">Independent</div>
-				<div class="proof-label">aligned advice and stewardship</div>
-			</div>
-			</div>
+          <div class="proof-stat">
+            <div class="proof-number">Independent</div>
+            <div class="proof-label">aligned advice and stewardship</div>
+          </div>
+        </div>
 
-			<p class="proof-note small muted">
-			*Illustrative placeholders. Replace with verified firm metrics and appropriate disclosures.
-			</p>
-		</div>
-		</section>
+        <p class="proof-note small muted">
+          *Illustrative placeholders. Replace with verified firm metrics and appropriate disclosures.
+        </p>
+      </div>
+    </section>
 
     <!-- WHO WE ARE / WHAT WE DO (Baseline-style split) -->
-<section class="split">
-  <div class="container">
-    <div class="split-grid">
-      <div class="split-copy">
-        <p class="eyebrow">Who we are</p>
-        <h2 class="split-title">A focused, research-led firm with a long-term mindset.</h2>
-        <p class="split-lead muted">
-          We serve clients who want clarity and discipline—especially when markets are noisy.
-          Our work is defined by repeatable underwriting, thoughtful portfolio construction,
-          and direct communication through cycles.
-        </p>
+    <section class="split">
+      <div class="container">
+        <div class="split-grid">
+          <div class="split-copy">
+            <p class="eyebrow">Who we are</p>
+            <h2 class="split-title">A focused, research-led firm with a long-term mindset.</h2>
+            <p class="split-lead muted">
+              We serve clients who want clarity and discipline—especially when markets are noisy.
+              Our work is defined by repeatable underwriting, thoughtful portfolio construction,
+              and direct communication through cycles.
+            </p>
 
-        <div class="split-links">
-          <a class="split-link" href="/philosophy/">Our philosophy <span aria-hidden="true">→</span></a>
-          <a class="split-link" href="/firm/">About the firm <span aria-hidden="true">→</span></a>
-          <a class="split-link" href="/people/">Meet the team <span aria-hidden="true">→</span></a>
-          <a class="split-link" href="/contact/">Contact <span aria-hidden="true">→</span></a>
+            <div class="split-links">
+              <a class="split-link" href="/philosophy/">Our philosophy <span aria-hidden="true">→</span></a>
+              <a class="split-link" href="/firm/">About the firm <span aria-hidden="true">→</span></a>
+              <a class="split-link" href="/people/">Meet the team <span aria-hidden="true">→</span></a>
+              <a class="split-link" href="/contact/">Contact <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+
+          <div class="split-visual" aria-hidden="true">
+            <img src="/images/placeholders/home-split.jpg" alt="" loading="lazy" />
+            <div class="split-visual__overlay">
+              <div class="split-visual__wordmark">Cutler</div>
+              <div class="split-visual__caption">Independent, aligned, and built for long horizons.</div>
+            </div>
+          </div>
         </div>
       </div>
+    </section>
 
-      <div class="split-visual" aria-hidden="true">
-        <!-- Optional: add /public/images/home-split.jpg and uncomment -->
-        <img src="/images/placeholders/home-split.jpg" alt="" loading="lazy" />
-        <div class="split-visual__overlay">
-          <div class="split-visual__wordmark">Cutler</div>
-          <div class="split-visual__caption">Independent, aligned, and built for long horizons.</div>
+    <!-- CAPABILITIES -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>What we do</h2>
+          <p class="muted">
+            A focused platform designed for clients who want clarity, discipline, and consistency.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <div class="feature">
+            <h3>Investment management</h3>
+            <p class="muted">
+              Concentrated work in areas where research effort can matter—often underfollowed,
+              complex, or fragmented segments.
+            </p>
+            <a class="text-link" href="/strategies/">Explore strategies →</a>
+          </div>
+
+          <div class="feature">
+            <h3>Wealth management</h3>
+            <p class="muted">
+              Portfolio construction, planning coordination, and implementation built around each
+              client’s objectives and constraints.
+            </p>
+            <a class="text-link" href="/wealth-management/">How we work →</a>
+          </div>
+
+          <div class="feature">
+            <h3>Research communication</h3>
+            <p class="muted">
+              Plain-English explanations of decisions, tradeoffs, and positioning—especially during
+              uncertainty.
+            </p>
+            <a class="text-link" href="/research/">Read insights →</a>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-	<!-- CAPABILITIES -->
-		<section class="section">
-		<div class="container">
-			<div class="section-head">
-			<h2>What we do</h2>
-			<p class="muted">
-				A focused platform designed for clients who want clarity, discipline, and consistency.
-			</p>
-			</div>
-
-			<div class="grid-3">
-			<div class="feature">
-				<h3>Investment management</h3>
-				<p class="muted">
-				Concentrated work in areas where research effort can matter—often underfollowed,
-				complex, or fragmented segments.
-				</p>
-				<a class="text-link" href="/strategies/">Explore strategies →</a>
-			</div>
-
-			<div class="feature">
-				<h3>Wealth management</h3>
-				<p class="muted">
-				Portfolio construction, planning coordination, and implementation built around each
-				client’s objectives and constraints.
-				</p>
-				<a class="text-link" href="/wealth-management/">How we work →</a>
-			</div>
-
-			<div class="feature">
-				<h3>Research communication</h3>
-				<p class="muted">
-				Plain-English explanations of decisions, tradeoffs, and positioning—especially during
-				uncertainty.
-				</p>
-				<a class="text-link" href="/research/">Read insights →</a>
-			</div>
-			</div>
-		</div>
-		</section>
+    </section>
 
     <!-- CALM CTA BAND -->
     <section class="section section-alt">
@@ -213,4 +164,103 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </div>
     </section>
   </main>
+
+  <style>
+    /* Full-bleed hero video (scoped to this page via class) */
+    .hero.hero--video {
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Make sure content sits above video */
+    .hero.hero--video .container,
+    .hero.hero--video .hero-grid {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.02);
+      filter: contrast(1.05) saturate(1.05);
+    }
+
+    /* Readability overlay (Nicola-style: darker bottom, softer top) */
+    .hero-scrim {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(1200px 600px at 20% 25%, rgba(0,0,0,0.35), transparent 60%),
+        linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0.35) 40%, rgba(0,0,0,0.65));
+    }
+
+    /* White text + subtle shadow for readability */
+    .hero.hero--video .eyebrow,
+    .hero.hero--video h1,
+    .hero.hero--video .lead,
+    .hero.hero--video .trust-kpi,
+    .hero.hero--video .trust-label {
+      color: #fff;
+      text-shadow: 0 8px 24px rgba(0,0,0,0.45);
+    }
+
+    .hero.hero--video .muted {
+      color: rgba(255,255,255,0.78);
+      text-shadow: 0 8px 24px rgba(0,0,0,0.45);
+    }
+
+    /* Keep the right Explore card up (where the removed top line was) */
+    .hero.hero--video .hero-rail {
+      align-self: flex-start;
+      margin-top: -10px;
+    }
+
+    /* Make the Explore card feel like a readable “glass” panel on video */
+    .hero.hero--video .card.hero-explore {
+      background: rgba(12, 16, 22, 0.72);
+      border: 1px solid rgba(255,255,255,0.14);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .hero.hero--video .card.hero-explore h2,
+    .hero.hero--video .card.hero-explore .seg-title,
+    .hero.hero--video .card.hero-explore .seg-desc,
+    .hero.hero--video .card.hero-explore .card-note {
+      color: #fff;
+      text-shadow: none;
+    }
+
+    .hero.hero--video .card.hero-explore .seg {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .hero.hero--video .card.hero-explore .seg:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(255,255,255,0.18);
+    }
+	/* Align right-side principles with hero headline */
+	.hero.hero--video .hero-rail {
+	align-self: flex-start;
+	margin-top: 96px; /* adjust 80–120px if needed */
+	}
+
+	.hero-principles {
+	border-left: 1px solid rgba(255,255,255,0.12);
+	padding-left: 24px;
+	}
+  </style>
 </BaseLayout>

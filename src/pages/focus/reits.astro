@@ -1,0 +1,531 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="REITs | Cutler Capital Management">
+  <main id="main">
+    <section class="page-hero subtle-hero">
+      <div class="container">
+        <p class="eyebrow">Investment Focus</p>
+        <h1>Real estate, thoughtfully sized.</h1>
+        <p class="lead muted">
+          REIT exposure can add diversification, income, and inflation sensitivity—when sized and
+          underwritten with discipline.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head row-between">
+          <div>
+            <h2>Portfolio mix: adding REITs</h2>
+            <p class="muted">
+              Illustrative allocations showing how portfolio composition can shift return/risk profile.
+            </p>
+          </div>
+
+          <div class="pill-toggle" role="tablist" aria-label="REIT allocation toggle">
+            <button class="pill is-active" data-mix="base" type="button">0% REITs</button>
+            <button class="pill" data-mix="reits10" type="button">10% REITs</button>
+            <button class="pill" data-mix="reits20" type="button">20% REITs</button>
+          </div>
+        </div>
+
+        <div class="reits-grid">
+          <div class="card chart-card">
+            <div class="chart-top">
+              <p class="kicker">Allocation</p>
+              <p class="muted small">Hover segments for details</p>
+            </div>
+
+            <div class="donut-wrap">
+              <svg class="donut" viewBox="0 0 120 120" aria-label="Portfolio allocation donut chart">
+                <!-- Ring background -->
+                <circle cx="60" cy="60" r="44" class="donut-bg" />
+                <!-- Segments (stroke-dasharray updated via JS) -->
+                <circle cx="60" cy="60" r="44" class="seg seg-stocks" data-key="stocks" />
+                <circle cx="60" cy="60" r="44" class="seg seg-bonds" data-key="bonds" />
+                <circle cx="60" cy="60" r="44" class="seg seg-tbills" data-key="tbills" />
+                <circle cx="60" cy="60" r="44" class="seg seg-reits" data-key="reits" />
+                <!-- Hole -->
+                <circle cx="60" cy="60" r="28" class="donut-hole" />
+                <text x="60" y="62" text-anchor="middle" class="donut-center" id="mixLabel">0% REITs</text>
+              </svg>
+
+              <div class="tooltip" id="mixTip" aria-hidden="true"></div>
+            </div>
+
+            <div class="legend">
+              <div class="legend-item"><span class="swatch stocks"></span><span>Stocks</span></div>
+              <div class="legend-item"><span class="swatch bonds"></span><span>Bonds</span></div>
+              <div class="legend-item"><span class="swatch tbills"></span><span>T-Bills</span></div>
+              <div class="legend-item"><span class="swatch reits"></span><span>REITs</span></div>
+            </div>
+          </div>
+
+          <div class="card chart-card">
+            <div class="chart-top">
+              <p class="kicker">Impact snapshot</p>
+              <p class="muted small">Illustrative return & risk</p>
+            </div>
+
+            <div class="impact">
+              <div class="impact-row">
+                <span class="muted">Return (%)</span>
+                <strong id="mixReturn">10.0</strong>
+              </div>
+              <div class="impact-row">
+                <span class="muted">Risk (%)</span>
+                <strong id="mixRisk">10.0</strong>
+              </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <h3 class="h6">How we interpret this</h3>
+            <ul class="bullets muted">
+              <li>Diversification only helps if the underlying exposures are distinct.</li>
+              <li>Position sizing matters more than the label (“real estate”).</li>
+              <li>We focus on underwriting and balance sheet resilience, not headlines.</li>
+            </ul>
+
+            <p class="small muted note">
+              Illustrative example for communication purposes only. Not investment advice.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-head row-between">
+          <div>
+            <h2>REITs across regimes</h2>
+            <p class="muted">
+              Example comparison of income vs price contribution, and total return, across two market regimes.
+            </p>
+          </div>
+
+          <div class="pill-toggle" aria-label="Regime toggle">
+            <button class="pill is-active" data-regime="hist" type="button">Historical</button>
+            <button class="pill" data-regime="infl" type="button">High inflation</button>
+          </div>
+        </div>
+
+        <div class="card chart-card wide">
+          <div class="bar-wrap">
+            <!-- PATCH: replace brittle bars SVG with a fixed-scale, explicit-fill SVG -->
+            <svg
+              class="bars"
+              id="reitsSvg"
+              viewBox="0 0 920 420"
+              aria-label="Stacked bar chart showing income and price return, with total return line"
+            >
+              <defs>
+                <clipPath id="plotClip">
+                  <rect x="80" y="40" width="780" height="280"></rect>
+                </clipPath>
+              </defs>
+
+              <!-- axis -->
+              <line x1="80" y1="320" x2="860" y2="320" class="axis-line"></line>
+              <line x1="80" y1="40" x2="80" y2="320" class="axis-line axis-y"></line>
+
+              <!-- y ticks (0..20) -->
+              <g class="ticks">
+                <g>
+                  <line x1="80" y1="320" x2="860" y2="320" class="tick-line"></line>
+                  <text x="68" y="324" class="tick-text">0</text>
+                </g>
+                <g>
+                  <line x1="80" y1="250" x2="860" y2="250" class="tick-line"></line>
+                  <text x="62" y="254" class="tick-text">5</text>
+                </g>
+                <g>
+                  <line x1="80" y1="180" x2="860" y2="180" class="tick-line"></line>
+                  <text x="56" y="184" class="tick-text">10</text>
+                </g>
+                <g>
+                  <line x1="80" y1="110" x2="860" y2="110" class="tick-line"></line>
+                  <text x="56" y="114" class="tick-text">15</text>
+                </g>
+                <g>
+                  <line x1="80" y1="40" x2="860" y2="40" class="tick-line"></line>
+                  <text x="56" y="44" class="tick-text">20</text>
+                </g>
+              </g>
+
+              <!-- groups inserted by JS -->
+              <g id="barsGroup" clip-path="url(#plotClip)"></g>
+              <path id="totalPath" class="total-path" d=""></path>
+              <g id="totalDots"></g>
+              <g id="xLabels"></g>
+            </svg>
+
+            <div class="tooltip" id="barTip" aria-hidden="true"></div>
+          </div>
+
+          <div class="bar-legend">
+            <div class="legend-item"><span class="swatch income"></span><span>Income return</span></div>
+            <div class="legend-item"><span class="swatch price"></span><span>Price return</span></div>
+            <div class="legend-item"><span class="swatch total"></span><span>Total return</span></div>
+          </div>
+
+          <p class="small muted note">
+            Illustrative example. Replace with verified firm-approved data and required disclosures.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script is:inline>
+    // ----- Data (replace later with your approved figures) -----
+    const mixes = {
+      base:   { label: "0% REITs",  alloc: { stocks: 50, bonds: 40, tbills: 10, reits: 0  }, ret: 10.0, risk: 10.0 },
+      reits10:{ label: "10% REITs", alloc: { stocks: 45, bonds: 35, tbills: 10, reits: 10 }, ret: 10.3, risk: 10.0 },
+      reits20:{ label: "20% REITs", alloc: { stocks: 38, bonds: 32, tbills: 10, reits: 20 }, ret: 10.6, risk: 10.0 },
+    };
+
+    const regimes = {
+      hist: [
+        { name: "REITs",  income: 4.3, price: 7.2, total: 11.9 },
+        { name: "Stocks", income: 7.4, price: 3.1, total: 10.6 },
+        { name: "Bonds",  income: 0.8, price: 6.1, total:  6.9 },
+        { name: "Inflation", income: 0, price: 0, total: 4.0 },
+      ],
+      infl: [
+        { name: "REITs",  income: 6.6, price: 10.4, total: 17.9 },
+        { name: "Stocks", income: 4.8, price:  5.0, total: 10.0 },
+        { name: "Bonds",  income: -3.0, price: 8.4, total:  5.6 },
+        { name: "Inflation", income: 0, price: 0, total: 9.3 },
+      ],
+    };
+
+    // ----- Donut rendering -----
+    const donut = document.querySelector(".donut");
+    const tip = document.getElementById("mixTip");
+    const mixLabel = document.getElementById("mixLabel");
+    const mixReturn = document.getElementById("mixReturn");
+    const mixRisk = document.getElementById("mixRisk");
+
+    const CIRC = 2 * Math.PI * 44; // r = 44
+    function setSegment(circle, startPct, pct) {
+      const start = (CIRC * startPct) / 100;
+      const len = (CIRC * pct) / 100;
+      circle.style.strokeDasharray = `${len} ${CIRC - len}`;
+      circle.style.strokeDashoffset = `${-start}`;
+    }
+
+    function renderMix(key) {
+      const m = mixes[key];
+      mixLabel.textContent = m.label;
+      mixReturn.textContent = m.ret.toFixed(1);
+      mixRisk.textContent = m.risk.toFixed(1);
+
+      let start = 0;
+      const order = ["stocks","bonds","tbills","reits"];
+      for (const k of order) {
+        const circle = donut.querySelector(`.seg[data-key="${k}"]`);
+        setSegment(circle, start, m.alloc[k]);
+        circle.dataset.value = m.alloc[k];
+        start += m.alloc[k];
+      }
+    }
+
+    // Tooltip hover for donut segments
+    donut.addEventListener("mousemove", (e) => {
+      const t = e.target;
+      if (!t.classList.contains("seg")) return;
+      const key = t.dataset.key;
+      const value = t.dataset.value ?? "0";
+      tip.style.left = `${e.offsetX + 14}px`;
+      tip.style.top = `${e.offsetY + 14}px`;
+      tip.innerHTML = `<strong>${key.toUpperCase()}</strong><br/>${value}%`;
+      tip.classList.add("show");
+      tip.setAttribute("aria-hidden", "false");
+    });
+    donut.addEventListener("mouseleave", () => {
+      tip.classList.remove("show");
+      tip.setAttribute("aria-hidden", "true");
+    });
+
+    document.querySelectorAll('[data-mix]').forEach((btn) => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll('[data-mix]').forEach(b => b.classList.remove("is-active"));
+        btn.classList.add("is-active");
+        renderMix(btn.dataset.mix);
+      });
+    });
+
+    // ----- Bars rendering (PATCH: fixed scale, explicit fills, proper stacking) -----
+    const barsGroup = document.getElementById("barsGroup");
+    const barTip = document.getElementById("barTip");
+    const totalPath = document.getElementById("totalPath");
+    const totalDots = document.getElementById("totalDots");
+    const xLabels = document.getElementById("xLabels");
+    const barsSvg = document.getElementById("reitsSvg");
+
+    const plot = { x: 80, y: 40, w: 780, h: 280 };
+    const maxY = 20; // keep consistent with tick labels
+
+    function yScale(v) {
+      return plot.y + plot.h - (v / maxY) * plot.h;
+    }
+    function hScale(v) {
+      return (Math.abs(v) / maxY) * plot.h;
+    }
+    function clearNode(node) {
+      while (node.firstChild) node.removeChild(node.firstChild);
+    }
+
+    function renderRegime(key) {
+      clearNode(barsGroup);
+      clearNode(totalDots);
+      clearNode(xLabels);
+      totalPath.setAttribute("d", "");
+
+      const data = regimes[key];
+
+      const n = data.length;
+      const gap = 34;
+      const barW = (plot.w - gap * (n - 1)) / n;
+
+      const incomeFill = "rgba(124,58,237,0.60)";
+      const priceFill  = "rgba(124,58,237,0.32)";
+      const totalStroke = "rgba(124,58,237,0.95)";
+
+      const baseY = yScale(0);
+      const points = [];
+
+      data.forEach((d, i) => {
+        const x = plot.x + i * (barW + gap);
+
+        const income = d.income || 0;
+        const price = d.price || 0;
+        const total = d.total ?? (income + price);
+
+        const posIncome = Math.max(0, income);
+        const posPrice = Math.max(0, price);
+        const posTotal = posIncome + posPrice;
+
+        // price segment (bottom of positive stack)
+        if (posPrice > 0) {
+          const priceH = hScale(posPrice);
+          const priceY = yScale(posPrice);
+
+          const r = document.createElementNS("http://www.w3.org/2000/svg","rect");
+          r.setAttribute("x", x);
+          r.setAttribute("y", priceY);
+          r.setAttribute("width", barW);
+          r.setAttribute("height", Math.max(0, priceH));
+          r.setAttribute("rx", "14");
+          r.setAttribute("fill", priceFill);           // explicit fill (prevents black fallback)
+          r.setAttribute("class", "bar price");
+          r.dataset.label = d.name;
+          r.dataset.kind = "Price";
+          r.dataset.value = price;
+          barsGroup.appendChild(r);
+        }
+
+        // income segment (top of price, if positive)
+        if (posIncome > 0) {
+          const incomeH = hScale(posIncome);
+          const incomeY = yScale(posTotal);
+
+          const r = document.createElementNS("http://www.w3.org/2000/svg","rect");
+          r.setAttribute("x", x);
+          r.setAttribute("y", incomeY);
+          r.setAttribute("width", barW);
+          r.setAttribute("height", Math.max(0, incomeH));
+          r.setAttribute("rx", "14");
+          r.setAttribute("fill", incomeFill);          // explicit fill
+          r.setAttribute("class", "bar income");
+          r.dataset.label = d.name;
+          r.dataset.kind = "Income";
+          r.dataset.value = income;
+          barsGroup.appendChild(r);
+        }
+
+        // negative income segment (below baseline), if present
+        if (income < 0) {
+          const negH = hScale(income);
+          const r = document.createElementNS("http://www.w3.org/2000/svg","rect");
+          r.setAttribute("x", x);
+          r.setAttribute("y", baseY);
+          r.setAttribute("width", barW);
+          r.setAttribute("height", Math.max(0, negH));
+          r.setAttribute("rx", "14");
+          r.setAttribute("fill", "rgba(124,58,237,0.35)");
+          r.setAttribute("class", "bar income neg");
+          r.dataset.label = d.name;
+          r.dataset.kind = "Income";
+          r.dataset.value = income;
+          barsGroup.appendChild(r);
+        }
+
+        // total label
+        const tLabel = document.createElementNS("http://www.w3.org/2000/svg","text");
+        tLabel.setAttribute("x", x + barW/2);
+        tLabel.setAttribute("y", Math.max(56, yScale(Math.max(0, total)) - 10));
+        tLabel.setAttribute("text-anchor","middle");
+        tLabel.setAttribute("class", "total-label");
+        tLabel.textContent = Number(total).toFixed(1);
+        barsGroup.appendChild(tLabel);
+
+        // x label
+        const xText = document.createElementNS("http://www.w3.org/2000/svg","text");
+        xText.setAttribute("x", x + barW/2);
+        xText.setAttribute("y", 360);
+        xText.setAttribute("text-anchor","middle");
+        xText.setAttribute("class", "xlab");
+        xText.textContent = d.name;
+        xLabels.appendChild(xText);
+
+        // total line points (clamp below 0 to 0 visually)
+        const p = { x: x + barW/2, y: yScale(Math.max(0, total)) };
+        points.push(p);
+
+        // dot
+        const dot = document.createElementNS("http://www.w3.org/2000/svg","circle");
+        dot.setAttribute("cx", p.x);
+        dot.setAttribute("cy", p.y);
+        dot.setAttribute("r", "4.5");
+        dot.setAttribute("fill", "#fff");
+        dot.setAttribute("stroke", totalStroke);
+        dot.setAttribute("stroke-width", "2.5");
+        dot.setAttribute("class", "total-dot");
+        dot.dataset.label = d.name;
+        dot.dataset.kind = "Total";
+        dot.dataset.value = total;
+        totalDots.appendChild(dot);
+      });
+
+      // total line path
+      const dPath = points.map((p, idx) => `${idx === 0 ? "M" : "L"} ${p.x} ${p.y}`).join(" ");
+      totalPath.setAttribute("d", dPath);
+      totalPath.setAttribute("stroke", totalStroke);
+    }
+
+    // Tooltip hover for bars & total markers (rects + dots + path)
+    barsSvg.addEventListener("mousemove", (e) => {
+      const t = e.target;
+      const isBar = t.classList && (t.classList.contains("bar") || t.classList.contains("total-dot"));
+      if (!isBar) return;
+
+      const rect = barsSvg.getBoundingClientRect();
+      barTip.style.left = `${e.clientX - rect.left + 14}px`;
+      barTip.style.top = `${e.clientY - rect.top + 14}px`;
+      barTip.innerHTML = `<strong>${t.dataset.label}</strong><br/>${t.dataset.kind}: ${Number(t.dataset.value).toFixed(1)}%`;
+      barTip.classList.add("show");
+      barTip.setAttribute("aria-hidden", "false");
+    });
+    barsSvg.addEventListener("mouseleave", () => {
+      barTip.classList.remove("show");
+      barTip.setAttribute("aria-hidden", "true");
+    });
+
+    document.querySelectorAll("[data-regime]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll("[data-regime]").forEach(b => b.classList.remove("is-active"));
+        btn.classList.add("is-active");
+        renderRegime(btn.dataset.regime);
+      });
+    });
+
+    // initial render
+    renderMix("base");
+    renderRegime("hist");
+  </script>
+
+  <style>
+    .row-between{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap}
+    .subtle-hero{padding:56px 0 18px;border-bottom:1px solid rgba(0,0,0,0.06);background:radial-gradient(900px 300px at 15% 10%, rgba(124,58,237,0.06), transparent 55%)}
+    .reits-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:18px;margin-top:18px}
+    @media (max-width: 980px){.reits-grid{grid-template-columns:1fr}}
+
+    .pill-toggle{display:flex;gap:8px;align-items:center}
+    .pill{border:1px solid rgba(0,0,0,0.10);background:#fff;border-radius:999px;padding:8px 12px;font-weight:600;font-size:13px}
+    .pill.is-active{border-color:rgba(124,58,237,0.35);background:rgba(124,58,237,0.08)}
+    .chart-card{padding:18px}
+    .chart-card.wide{padding:18px 18px 14px}
+    .chart-top{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:12px}
+    .kicker{letter-spacing:.12em;text-transform:uppercase;font-size:12px;font-weight:700;margin:0}
+
+    .donut-wrap{position:relative;display:grid;place-items:center;padding:10px 0 8px}
+    .donut{width:260px;height:260px}
+    .donut-bg{fill:none;stroke:rgba(0,0,0,0.06);stroke-width:18}
+    .donut-hole{fill:#fff}
+    .donut-center{font-size:12px;font-weight:800;fill:rgba(0,0,0,0.72)}
+    .seg{fill:none;stroke-width:18;stroke-linecap:round;transform:rotate(-90deg);transform-origin:60px 60px;cursor:default}
+    .seg-stocks{stroke:rgba(124,58,237,0.70)}
+    .seg-bonds{stroke:rgba(124,58,237,0.45)}
+    .seg-tbills{stroke:rgba(0,0,0,0.20)}
+    .seg-reits{stroke:rgba(124,58,237,0.92)}
+
+    .legend{display:grid;grid-template-columns:1fr 1fr;gap:10px 12px;margin-top:10px}
+    .legend-item{display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(0,0,0,0.72)}
+    .swatch{width:10px;height:10px;border-radius:999px;display:inline-block}
+    .swatch.stocks{background:rgba(124,58,237,0.70)}
+    .swatch.bonds{background:rgba(124,58,237,0.45)}
+    .swatch.tbills{background:rgba(0,0,0,0.20)}
+    .swatch.reits{background:rgba(124,58,237,0.92)}
+    .swatch.income{background:rgba(124,58,237,0.65)}
+    .swatch.price{background:rgba(124,58,237,0.35)}
+    .swatch.total{background:rgba(124,58,237,0.95)}
+
+    .impact{display:grid;gap:10px;margin-top:6px}
+    .impact-row{display:flex;align-items:center;justify-content:space-between;padding:12px;border:1px solid rgba(0,0,0,0.08);border-radius:12px}
+    .divider{height:1px;background:rgba(0,0,0,0.06);margin:14px 0}
+    .bullets{margin:10px 0 0;padding-left:18px}
+    .h6{margin:0;font-size:14px;text-transform:uppercase;letter-spacing:.12em}
+    .note{margin-top:12px}
+
+    /* --- Bars chart (PATCH styles) --- */
+    .bar-wrap{position:relative}
+    .bars{width:100%;height:auto;display:block}
+    .axis-line{stroke:rgba(0,0,0,0.12);stroke-width:2}
+    .axis-y{stroke:rgba(0,0,0,0.08)}
+    .tick-line{stroke:rgba(0,0,0,0.07);stroke-width:1}
+    .tick-text{font-size:12px;fill:rgba(0,0,0,0.50);font-weight:600}
+
+    .bar{stroke:none}
+    .bar.income{ /* fill is set explicitly in JS, keep class for targeting */ }
+    .bar.price{  /* fill is set explicitly in JS */ }
+    .bar.neg{opacity:0.65}
+
+    .total-path{
+      fill:none;
+      stroke:rgba(124,58,237,0.95);
+      stroke-width:3.5;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+      opacity:0.95;
+      pointer-events:none;
+    }
+
+    .total-dot{pointer-events:auto}
+    .total-label{font-size:12px;font-weight:800;fill:rgba(0,0,0,0.62)}
+    .xlab{font-size:13px;fill:rgba(0,0,0,0.60);font-weight:700}
+    .bar-legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px}
+
+    .tooltip{
+      position:absolute;z-index:5;
+      background:rgba(12,16,22,0.92);
+      color:#fff;
+      border:1px solid rgba(255,255,255,0.12);
+      border-radius:12px;
+      padding:10px 12px;
+      font-size:13px;
+      box-shadow:0 18px 40px rgba(0,0,0,0.28);
+      backdrop-filter:blur(8px);
+      -webkit-backdrop-filter:blur(8px);
+      display:none;
+      pointer-events:none;
+      min-width:140px;
+    }
+    .tooltip.show{display:block}
+  </style>
+</BaseLayout>

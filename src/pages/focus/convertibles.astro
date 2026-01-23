@@ -1,0 +1,293 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Convertibles | Cutler Capital Management">
+  <main id="main">
+    <!-- PAGE HERO (Medium-like) -->
+    <section class="page-hero page-hero--soft">
+      <div class="container prose">
+        <p class="eyebrow">Investment Focus</p>
+        <h1>Convertibles</h1>
+        <p class="lead muted">
+          A long-established security with a distinct payoff profile: participation with guardrails.
+          We focus on credit-first underwriting, structural terms, and asymmetric outcomes.
+        </p>
+
+        <div class="meta-row">
+          <span class="meta-pill">Perspective</span>
+          <span class="meta-dot">•</span>
+          <span class="meta-pill">Education</span>
+          <span class="meta-dot">•</span>
+          <span class="meta-pill">Updated periodically</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURE VISUAL (the Venn image) -->
+    <section class="section">
+      <div class="container prose">
+        <div class="feature-card">
+          <div class="feature-card__head">
+            <p class="eyebrow">Concept</p>
+            <h2 class="h2-tight">Where convertibles sit in a portfolio</h2>
+            <p class="muted">
+              Convertibles can combine elements of bonds and equities, often improving portfolio efficiency
+              by seeking upside participation with limits on downside relative to equities.
+            </p>
+          </div>
+
+          <figure class="figure">
+            <!-- Save your Venn image here -->
+            <img
+              src="/images/placeholders/convertibles-venn.png"
+              alt="Convertibles vs. Bonds vs. Equities diagram"
+              loading="lazy"
+            />
+            <figcaption class="small muted">
+              Illustrative positioning. Replace with firm-approved graphic if needed.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- DATA TABLE (Bloomberg-style) -->
+    <section class="section section-alt">
+      <div class="container prose">
+        <div class="data-card">
+          <div class="data-card__head">
+            <p class="eyebrow">Comparative Snapshot</p>
+            <h2 class="h2-tight">Convertibles versus equity and bond indices</h2>
+            <p class="muted">
+              A compact way to communicate long-term return and risk characteristics. Numbers below are placeholders.
+            </p>
+          </div>
+
+          <div class="table-wrap" role="region" aria-label="Returns and volatility table" tabindex="0">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Asset Class</th>
+                  <th>Index</th>
+                  <th class="num">Annualized Return</th>
+                  <th class="num">Standard Deviation</th>
+                  <th class="num">Sharpe Ratio</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Convertibles</td>
+                  <td>BofA ML All U.S. Convertibles Index (VXA0)</td>
+                  <td class="num">11.1%</td>
+                  <td class="num">12.6%</td>
+                  <td class="num">0.49</td>
+                </tr>
+                <tr>
+                  <td>Large Cap Equity</td>
+                  <td>S&amp;P 500 Total Return Index (SPX)</td>
+                  <td class="num">13.2%</td>
+                  <td class="num">15.1%</td>
+                  <td class="num">0.54</td>
+                </tr>
+                <tr>
+                  <td>Small Cap Equity</td>
+                  <td>Russell 2000 Total Return Index (RTY)</td>
+                  <td class="num">10.8%</td>
+                  <td class="num">19.9%</td>
+                  <td class="num">0.36</td>
+                </tr>
+                <tr>
+                  <td>Fixed Income</td>
+                  <td>Bloomberg U.S. Aggregate Bond Index (LBUSTRUU)</td>
+                  <td class="num">5.5%</td>
+                  <td class="num">4.1%</td>
+                  <td class="num">0.08</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="small muted source-note">
+            Source: Bloomberg (format inspired). Replace values/time period with approved firm data and disclosures.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- KEY TAKEAWAYS (tight, professional) -->
+    <section class="section">
+      <div class="container prose">
+        <h2 class="h2-tight">What we look for</h2>
+
+        <div class="takeaways">
+          <div class="takeaway">
+            <h3>Credit-first underwriting</h3>
+            <p class="muted">We start with balance-sheet durability and downside scenarios before optionality.</p>
+          </div>
+          <div class="takeaway">
+            <h3>Structural edge</h3>
+            <p class="muted">Terms matter: call features, conversion premium, coupons, and protections.</p>
+          </div>
+          <div class="takeaway">
+            <h3>Asymmetric outcomes</h3>
+            <p class="muted">We prefer profiles that participate in upside while controlling drawdowns.</p>
+          </div>
+        </div>
+
+        <div class="cta-band">
+          <div>
+            <h3>Want the full write-up?</h3>
+            <p class="muted">We can share background materials and a sample framework in context.</p>
+          </div>
+          <a class="btn btn-primary" href="/contact/">Request materials</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  /* Page-local tweaks only (safe). If you prefer, move these into styles.css additions below. */
+
+  .page-hero--soft {
+    padding-top: 56px;
+    padding-bottom: 36px;
+    background:
+      radial-gradient(900px 420px at 18% 15%, rgba(113, 46, 67, 0.16), transparent 60%),
+      radial-gradient(900px 420px at 82% 10%, rgba(18, 24, 38, 0.08), transparent 55%);
+    border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+  }
+
+  .prose {
+    max-width: 860px;
+  }
+
+  .meta-row {
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .meta-pill {
+    font-size: 12px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(15, 23, 42, 0.10);
+    background: rgba(255,255,255,0.6);
+  }
+
+  .meta-dot { opacity: 0.45; }
+
+  .feature-card,
+  .data-card {
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+    padding: 22px;
+  }
+
+  .data-card { background: rgba(255,255,255,0.92); }
+
+  .h2-tight { margin-top: 6px; }
+
+  .figure {
+    margin-top: 16px;
+  }
+
+  .figure img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    background: #fff;
+  }
+
+  .table-wrap {
+    margin-top: 14px;
+    overflow: auto;
+    border-radius: 12px;
+    border: 1px solid rgba(15, 23, 42, 0.10);
+    background: #fff;
+  }
+
+  .data-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    min-width: 760px;
+  }
+
+  .data-table th,
+  .data-table td {
+    padding: 14px 14px;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+    vertical-align: top;
+    font-size: 14px;
+  }
+
+  .data-table thead th {
+    position: sticky;
+    top: 0;
+    background: rgba(113, 46, 67, 0.08);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    font-weight: 650;
+  }
+
+  .data-table tbody tr:hover td {
+    background: rgba(15, 23, 42, 0.03);
+  }
+
+  .data-table .num {
+    text-align: right;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .source-note {
+    margin-top: 10px;
+  }
+
+  .takeaways {
+    margin-top: 14px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .takeaway {
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 14px;
+    padding: 16px;
+    background: #fff;
+  }
+
+  .takeaway h3 {
+    margin: 0 0 6px 0;
+    font-size: 15px;
+  }
+
+  .cta-band {
+    margin-top: 18px;
+    border-radius: 16px;
+    padding: 18px;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    background:
+      radial-gradient(900px 420px at 85% 20%, rgba(113, 46, 67, 0.14), transparent 55%),
+      rgba(255,255,255,0.9);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  @media (max-width: 900px) {
+    .takeaways { grid-template-columns: 1fr; }
+    .cta-band { flex-direction: column; align-items: flex-start; }
+    .data-table { min-width: 640px; }
+  }
+</style>

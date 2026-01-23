@@ -1,61 +1,447 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+/**
+ * NOTE:
+ * - Add your placeholder images at these paths (or change them):
+ *   /public/images/placeholders/research/social-security.jpg
+ *   /public/images/placeholders/research/retire-timing.jpg
+ *   /public/images/placeholders/research/403b.jpg
+ *
+ * - Update href to your Medium URLs when ready.
+ */
+const posts = [
+  {
+    title: "Social Security Retirement Benefits",
+    dek:
+      "Social Security was originally intended to provide older Americans with continuing income after retirement. Today, retirement benefits remain the cornerstone of the program.",
+    category: "Retirement",
+    tags: ["Social Security", "Planning", "Benefits"],
+    dateLabel: "Jan 2026",
+    readTime: "8 min read",
+    href: "/research/social-security-retirement-benefits/",
+    image: "/images/placeholders/research/social-security.jpg",
+    featured: true,
+  },
+  {
+    title: "Deciding When to Retire: When Timing Becomes Critical",
+    dek:
+      "Deciding when to retire may not be one decision but a series of decisions and calculations—expenses, income sources, health, and when to claim Social Security.",
+    category: "Planning",
+    tags: ["Retirement", "Timing", "Income"],
+    dateLabel: "Jan 2026",
+    readTime: "10 min read",
+    href: "/research/deciding-when-to-retire/",
+    image: "/images/placeholders/research/retire-timing.jpg",
+    featured: false,
+  },
+  {
+    title: "403(b) Plans",
+    dek:
+      "A 403(b) plan is an employer-sponsored retirement plan for certain employees of public schools, tax-exempt organizations, and churches—often called a tax-sheltered annuity (TSA).",
+    category: "Retirement Plans",
+    tags: ["403(b)", "Tax", "Employer Plans"],
+    dateLabel: "Jan 2026",
+    readTime: "12 min read",
+    href: "/research/403b-plans/",
+    image: "/images/placeholders/research/403b.jpg",
+    featured: false,
+  },
+];
+
+const featured = posts.find((p) => p.featured) ?? posts[0];
+const latest = posts.filter((p) => p !== featured);
 ---
 
 <BaseLayout title="Research | Cutler Capital Management">
   <main id="main">
-    <section class="page-hero">
+    <section class="page-hero research-hero">
       <div class="container">
-        <p class="eyebrow">Research & Insights</p>
+        <p class="eyebrow">Research &amp; Insights</p>
         <h1>Clear thinking, written down.</h1>
         <p class="lead">
-          We publish occasional notes that explain how we think about markets, risk, and long-term compounding.
-          This is not a news feed. It is a record of decision frameworks.
+          We publish occasional notes on decision frameworks, long-horizon portfolio construction,
+          and planning topics that matter. This is not a news feed.
         </p>
+
+        <div class="topic-row" aria-label="Topics">
+          <a class="topic-pill" href="#latest">All</a>
+          <a class="topic-pill" href="#latest">Retirement</a>
+          <a class="topic-pill" href="#latest">Planning</a>
+          <a class="topic-pill" href="#latest">Taxes</a>
+          <a class="topic-pill" href="#latest">Benefits</a>
+        </div>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section research-section">
       <div class="container">
-        <div class="section-head">
-          <h2>Perspectives</h2>
-          <p class="muted">Sample topics below. Articles will be added as the site build progresses.</p>
-        </div>
-
-        <div class="grid-3">
-          <article class="post-card">
-            <p class="post-meta">Risk</p>
-            <h3 class="post-title">Volatility is not the same thing as risk</h3>
-            <p class="muted">How we frame downside, liquidity, and decision-making in uncertain markets.</p>
-            <p class="small muted">Post coming soon.</p>
-          </article>
-
-          <article class="post-card">
-            <p class="post-meta">Process</p>
-            <h3 class="post-title">What disciplined research looks like</h3>
-            <p class="muted">The underwriting steps we follow before capital is put at risk.</p>
-            <p class="small muted">Post coming soon.</p>
-          </article>
-
-          <article class="post-card">
-            <p class="post-meta">Markets</p>
-            <h3 class="post-title">Inefficiency and the advantage of patience</h3>
-            <p class="muted">Why certain corners of the market reward long horizons and careful work.</p>
-            <p class="small muted">Post coming soon.</p>
-          </article>
-        </div>
-
-        <div class="callout">
-          <div class="callout-inner">
-            <div>
-              <h3 class="callout-title">Prefer direct materials?</h3>
-              <p class="muted">For due-diligence packets, strategy notes, or historical commentary, reach out directly.</p>
+        <div class="research-layout">
+          <!-- LEFT: Featured + Latest -->
+          <div>
+            <div class="section-head research-head">
+              <h2>Featured</h2>
+              <p class="muted">A longer read with practical takeaways. (For now, links can go to Medium.)</p>
             </div>
-            <a class="btn btn-ghost" href="/contact/">Contact</a>
+
+            <!-- Featured card -->
+            <article class="featured-card">
+              <a class="featured-link" href={featured.href} target="_blank" rel="noreferrer">
+                <div class="featured-media" aria-hidden="true">
+                  <img src={featured.image} alt="" loading="lazy" />
+                </div>
+
+                <div class="featured-body">
+                  <div class="post-meta-row">
+                    <span class="post-kicker">{featured.category}</span>
+                    <span class="dot" aria-hidden="true">•</span>
+                    <span class="post-meta">{featured.dateLabel}</span>
+                    <span class="dot" aria-hidden="true">•</span>
+                    <span class="post-meta">{featured.readTime}</span>
+                  </div>
+
+                  <h3 class="featured-title">{featured.title}</h3>
+                  <p class="featured-dek">{featured.dek}</p>
+
+                  <div class="tag-row" aria-label="Tags">
+                    {featured.tags.map((t) => (
+                      <span class="tag">{t}</span>
+                    ))}
+                  </div>
+
+                  <div class="read-more">
+                    Read full article <span aria-hidden="true">→</span>
+                  </div>
+                </div>
+              </a>
+            </article>
+
+            <div class="section-head research-head" id="latest" style="margin-top:2.25rem;">
+              <h2>Latest</h2>
+              <p class="muted">Shorter notes and reference material.</p>
+            </div>
+
+            <div class="latest-list">
+              {latest.map((p) => (
+                <article class="latest-item">
+                  <a class="latest-link" href={p.href} target="_blank" rel="noreferrer">
+                    <div class="latest-body">
+                      <div class="post-meta-row">
+                        <span class="post-kicker">{p.category}</span>
+                        <span class="dot" aria-hidden="true">•</span>
+                        <span class="post-meta">{p.dateLabel}</span>
+                        <span class="dot" aria-hidden="true">•</span>
+                        <span class="post-meta">{p.readTime}</span>
+                      </div>
+
+                      <h3 class="latest-title">{p.title}</h3>
+                      <p class="latest-dek muted">{p.dek}</p>
+
+                      <div class="tag-row">
+                        {p.tags.map((t) => (
+                          <span class="tag">{t}</span>
+                        ))}
+                      </div>
+
+                      <div class="read-more subtle">
+                        Read full article <span aria-hidden="true">→</span>
+                      </div>
+                    </div>
+
+                    <div class="latest-media" aria-hidden="true">
+                      <img src={p.image} alt="" loading="lazy" />
+                    </div>
+                  </a>
+                </article>
+              ))}
+            </div>
+
+            <div class="callout" style="margin-top:2.5rem;">
+              <div class="callout-inner">
+                <div>
+                  <h3 class="callout-title">Prefer direct materials?</h3>
+                  <p class="muted">
+                    For due-diligence packets, historical commentary, or planning checklists, reach out directly.
+                  </p>
+                </div>
+                <a class="btn btn-ghost" href="/contact/">Contact</a>
+              </div>
+            </div>
           </div>
+
+          <!-- RIGHT: Sidebar (Medium-ish) -->
+          <aside class="research-side" aria-label="Sidebar">
+            <div class="side-card">
+              <p class="side-title">What you’ll find here</p>
+              <ul class="side-list">
+                <li>Decision frameworks over headlines</li>
+                <li>Plain-English risk and planning notes</li>
+                <li>Occasional long-form, updated over time</li>
+              </ul>
+            </div>
+
+            <div class="side-card">
+              <p class="side-title">Popular topics</p>
+              <div class="topic-cloud">
+                <a class="topic-pill" href="#latest">Social Security</a>
+                <a class="topic-pill" href="#latest">Retirement timing</a>
+                <a class="topic-pill" href="#latest">403(b)</a>
+                <a class="topic-pill" href="#latest">Taxes</a>
+                <a class="topic-pill" href="#latest">Income planning</a>
+              </div>
+            </div>
+          </aside>
         </div>
       </div>
     </section>
   </main>
-</BaseLayout>
 
+  <style>
+    /* Keep changes scoped to this page */
+    .research-hero {
+      padding-bottom: 0.5rem;
+    }
+
+    .topic-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .topic-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.45rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(15, 23, 42, 0.12);
+      background: rgba(255,255,255,0.75);
+      color: rgba(15, 23, 42, 0.82);
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+    .topic-pill:hover {
+      transform: translateY(-1px);
+      background: rgba(255,255,255,0.92);
+      border-color: rgba(15, 23, 42, 0.18);
+    }
+
+    .research-layout {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 2.25rem;
+      align-items: start;
+    }
+
+    @media (max-width: 980px) {
+      .research-layout {
+        grid-template-columns: 1fr;
+      }
+      .research-side {
+        order: 2;
+      }
+    }
+
+    .research-head {
+      margin-bottom: 1rem;
+    }
+
+    .post-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.5rem;
+    }
+
+    .post-kicker {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(15, 23, 42, 0.72);
+    }
+
+    .post-meta {
+      font-size: 0.85rem;
+      color: rgba(15, 23, 42, 0.62);
+    }
+
+    .dot {
+      color: rgba(15, 23, 42, 0.35);
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.85rem;
+    }
+
+    .tag {
+      font-size: 0.8rem;
+      padding: 0.25rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.06);
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      color: rgba(15, 23, 42, 0.78);
+    }
+
+    /* Featured */
+    .featured-card {
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(15, 23, 42, 0.10);
+      background: rgba(255,255,255,0.92);
+      box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+    }
+
+    .featured-link {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    @media (max-width: 980px) {
+      .featured-link {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .featured-media {
+      min-height: 260px;
+      background: rgba(15, 23, 42, 0.06);
+    }
+
+    .featured-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .featured-body {
+      padding: 1.35rem 1.35rem 1.25rem;
+    }
+
+    .featured-title {
+      margin: 0;
+      font-size: 1.65rem;
+      line-height: 1.18;
+      letter-spacing: -0.02em;
+      color: rgba(15, 23, 42, 0.95);
+    }
+
+    .featured-dek {
+      margin: 0.65rem 0 0;
+      color: rgba(15, 23, 42, 0.72);
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+
+    .read-more {
+      margin-top: 1rem;
+      font-weight: 600;
+      color: rgba(92, 19, 32, 0.95);
+    }
+    .read-more.subtle {
+      color: rgba(92, 19, 32, 0.82);
+      font-weight: 600;
+      margin-top: 0.85rem;
+    }
+
+    /* Latest list */
+    .latest-list {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .latest-item {
+      border-radius: 16px;
+      border: 1px solid rgba(15, 23, 42, 0.10);
+      background: rgba(255,255,255,0.9);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+      overflow: hidden;
+    }
+
+    .latest-link {
+      display: grid;
+      grid-template-columns: 1fr 170px;
+      gap: 0;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    @media (max-width: 640px) {
+      .latest-link {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .latest-body {
+      padding: 1.05rem 1.05rem 1rem;
+    }
+
+    .latest-title {
+      margin: 0;
+      font-size: 1.15rem;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      color: rgba(15, 23, 42, 0.95);
+    }
+
+    .latest-dek {
+      margin: 0.55rem 0 0;
+      line-height: 1.6;
+    }
+
+    .latest-media {
+      background: rgba(15, 23, 42, 0.06);
+      min-height: 140px;
+    }
+
+    .latest-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Sidebar */
+    .research-side {
+      position: sticky;
+      top: 96px;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .side-card {
+      border-radius: 16px;
+      border: 1px solid rgba(15, 23, 42, 0.10);
+      background: rgba(255,255,255,0.82);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+      padding: 1rem;
+    }
+
+    .side-title {
+      margin: 0 0 0.6rem;
+      font-weight: 700;
+      color: rgba(15, 23, 42, 0.9);
+    }
+
+    .side-list {
+      margin: 0;
+      padding-left: 1.15rem;
+      color: rgba(15, 23, 42, 0.72);
+      line-height: 1.65;
+    }
+
+    .topic-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+  </style>
+</BaseLayout>

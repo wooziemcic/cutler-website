@@ -1,7 +1,5 @@
 ---
 const path = Astro.url.pathname;
-
-// helper to mark active nav items
 const isActive = (href) => path === href;
 ---
 
@@ -9,15 +7,7 @@ const isActive = (href) => path === href;
 
 <header class="site-header" data-header>
   <div class="container header-inner">
-    <!-- FIXED: Home route is "/" not "/index/" -->
-    <a class="brand" href="/" aria-label="Cutler Capital Management home">
-      <span class="brand-mark" aria-hidden="true">C</span>
-      <span class="brand-text">
-        <span class="brand-name">Cutler</span>
-        <span class="brand-sub">Capital Management</span>
-      </span>
-    </a>
-
+    <!-- Mobile toggle -->
     <button
       class="nav-toggle"
       type="button"
@@ -25,54 +15,63 @@ const isActive = (href) => path === href;
       aria-expanded="false"
       data-nav-toggle
     >
-      <span class="nav-toggle-bars" aria-hidden="true"></span>
+      <span class="nav-toggle-bars" aria-hidden="true"><span></span></span>
     </button>
 
-    <nav class="site-nav" aria-label="Primary" data-nav>
+    <!-- Left nav -->
+    <nav class="site-nav nav-left" aria-label="Primary (left)">
       <ul class="nav-list">
         <li>
           <a href="/philosophy/" class={isActive("/philosophy/") ? "active" : ""}>
             Philosophy
           </a>
         </li>
-
         <li>
           <a href="/strategies/" class={isActive("/strategies/") ? "active" : ""}>
             Investment Strategies
           </a>
         </li>
-
         <li>
-          <a
-            href="/wealth-management/"
-            class={isActive("/wealth-management/") ? "active" : ""}
-          >
+          <a href="/wealth-management/" class={isActive("/wealth-management/") ? "active" : ""}>
             Wealth Management
           </a>
         </li>
+      </ul>
+    </nav>
 
+    <!-- Center brand -->
+    <div class="nav-center">
+      <a href="/" class="brand" aria-label="Cutler Capital Management">
+        <span class="brand-mark" aria-hidden="true">
+          <img src="/images/placeholders/logo.png" alt="" />
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Cutler</span>
+          <span class="brand-sub">Capital Management</span>
+        </span>
+      </a>
+    </div>
+
+    <!-- Right nav -->
+    <nav class="site-nav nav-right" aria-label="Primary (right)" data-nav>
+      <ul class="nav-list">
         <li>
           <a href="/research/" class={isActive("/research/") ? "active" : ""}>
             Research &amp; Insights
           </a>
         </li>
-
         <li>
           <a href="/people/" class={isActive("/people/") ? "active" : ""}>
             People
           </a>
         </li>
-
         <li>
           <a href="/firm/" class={isActive("/firm/") ? "active" : ""}>
             Firm
           </a>
         </li>
-
         <li>
-          <a class="btn btn-primary" href="/contact/">
-            Contact
-          </a>
+          <a class="btn btn-primary" href="/contact/">Contact</a>
         </li>
       </ul>
     </nav>

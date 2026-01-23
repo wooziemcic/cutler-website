@@ -364,8 +364,13 @@ a:hover {
 }
 
 .btn-primary:hover {
-  border-color: rgba(255, 255, 255, 0.22);
-  background: linear-gradient(135deg, rgba(205, 183, 255, 0.35), rgba(137, 247, 216, 0.25));
+  background: linear-gradient(
+    135deg,
+    #42111D,
+    #2f0c14
+  );
+  color: #ffffff;
+  border-color: rgba(66, 17, 29, 0.35);
 }
 
 .btn-ghost {
@@ -1316,3 +1321,424 @@ a:hover {
   font-size: 0.95rem;
   opacity: 0.92;
 }
+
+/* =========================
+   Centered header (Nicola-style)
+   ========================= */
+.header-centered {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Keep brand visually centered */
+.brand-center {
+  justify-self: center;
+}
+
+/* Nav columns */
+.nav-left {
+  justify-self: start;
+}
+.nav-right {
+  justify-self: end;
+}
+
+/* Ensure nav lists render in a single row */
+.header-centered .nav-list {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Optional: tighten link feel like Nicola (not changing color system) */
+.header-centered .nav-list a {
+  white-space: nowrap;
+}
+
+/* Mobile behavior: brand left, toggle right, nav becomes your existing drawer */
+@media (max-width: 980px) {
+  .header-centered {
+    grid-template-columns: auto 1fr auto;
+  }
+
+  .brand-center {
+    justify-self: start;
+  }
+
+  /* Put toggle on the right */
+  .nav-toggle {
+    justify-self: end;
+  }
+
+  /* Stack/hide the desktop split navs; your existing mobile nav styles should take over */
+  .nav-left,
+  .nav-right {
+    grid-column: 1 / -1;
+    justify-self: stretch;
+  }
+
+  /* If your current mobile menu expects one nav, this keeps things sane */
+  .header-centered .nav-list {
+    flex-wrap: wrap;
+  }
+}
+
+/* =========================
+   Center logo (Cutler mark)
+   ========================= */
+
+.brand-logo {
+  text-decoration: none;
+}
+
+.logo-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #ffffff; /* white badge */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.08),
+    inset 0 0 0 1px rgba(66, 17, 29, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.logo-circle img {
+  display: block;
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+/* Subtle institutional hover */
+.brand-logo:hover .logo-circle {
+  transform: translateY(-1px);
+  box-shadow:
+    0 10px 26px rgba(0, 0, 0, 0.12),
+    inset 0 0 0 1px rgba(66, 17, 29, 0.25);
+}
+
+/* Mobile sizing */
+@media (max-width: 980px) {
+  .logo-circle {
+    width: 44px;
+    height: 44px;
+  }
+
+  .logo-circle img {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.nav {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+
+.brand-mark {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #42111D;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.brand-mark img {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+}
+
+.brand-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #111;
+}
+
+.brand-sub {
+  font-size: 0.75rem;
+  color: #666;
+  letter-spacing: 0.02em;
+}
+
+.nav-center {
+  justify-self: center;
+}
+
+.nav {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+}
+
+.nav-left {
+  justify-self: end;
+  padding-right: 2rem;
+}
+
+.nav-right {
+  justify-self: start;
+  padding-left: 2rem;
+}
+
+
+.nav-center {
+  justify-self: center;
+}
+
+.nav-left,
+.nav-right {
+  min-width: 0;
+}
+
+.nav-spacer {
+  flex: 1;
+}
+
+.btn.btn-primary {
+  background: linear-gradient(135deg, #42111D, #5a1b28);
+  color: #ffffff;              /* ← force white text */
+}
+
+.btn.btn-primary:hover {
+  color: #ffffff;
+}
+
+/* Push the Explore column slightly right without breaking the grid */
+.hero.hero--video .hero-rail{
+  justify-self: end;         /* aligns it to the right edge of its grid column */
+}
+
+@media (min-width: 1100px){
+  .hero.hero--video .hero-rail{
+    transform: translateX(24px);  /* tweak 16–40px as you like */
+  }
+}
+
+/* Trust row becomes subtle instead of a second hero section */
+.hero.hero--video .trust-row{
+  margin-top: 18px;
+  opacity: 0.85;
+}
+
+.hero.hero--video .trust-item{
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.14);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.hero.hero--video .trust-kpi{
+  font-weight: 650;
+  font-size: 0.95rem;
+}
+
+.hero.hero--video .trust-label{
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+.hero.hero--video .card.hero-explore h2{
+  margin-bottom: 6px;
+}
+
+.hero.hero--video .card.hero-explore .seg{
+  padding: 14px 16px; /* reduce bulk */
+}
+
+.hero.hero--video .card.hero-explore .seg-desc{
+  opacity: 0.85;
+}
+
+/* Right-side stacked principles */
+.hero-principles {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 360px;
+  margin-left: auto;
+  padding: 24px 22px;
+
+  background: rgba(10, 12, 14, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+/* Individual principle blocks */
+.principle h3 {
+  margin: 0 0 6px 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.principle p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: rgba(255,255,255,0.85);
+}
+
+/* Align vertically with hero copy */
+.hero-grid {
+  align-items: center;
+}
+
+/* Responsive: stack below on smaller screens */
+@media (max-width: 900px) {
+  .hero-principles {
+    margin: 32px auto 0;
+    max-width: 100%;
+  }
+}
+
+/* =========================
+   FOOTER (readability + polish)
+   Add this near the bottom of styles.css
+========================= */
+
+.site-footer{
+  background: #0f141a;               /* deep, institutional */
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 3.25rem 0;
+}
+
+.site-footer,
+.site-footer p,
+.site-footer li{
+  color: rgba(255,255,255,0.82);
+}
+
+.site-footer .muted{
+  color: rgba(255,255,255,0.68);    /* override global muted */
+}
+
+.site-footer .small{
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.footer-grid{
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1.4fr;
+  gap: 2.25rem;
+  align-items: start;
+}
+
+.footer-title{
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: rgba(255,255,255,0.92);
+  margin: 0 0 0.75rem 0;
+}
+
+.footer-links{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-links li{
+  margin: 0 0 0.55rem 0;
+}
+
+.footer-links a{
+  color: rgba(255,255,255,0.74);
+  text-decoration: none;
+  transition: color 160ms ease, opacity 160ms ease;
+}
+
+.footer-links a:hover{
+  color: rgba(255,255,255,0.95);
+}
+
+.footer-blurb{
+  margin: 0.75rem 0 1.1rem 0;
+  max-width: 36ch;
+}
+
+.site-footer .brand.brand-footer{
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+
+.site-footer .brand-footer .brand-mark{
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: #42111D;              /* your brand burgundy */
+  color: #fff;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.site-footer .brand-footer .brand-name{
+  color: rgba(255,255,255,0.95);
+  font-weight: 700;
+}
+
+.site-footer .brand-footer .brand-sub{
+  color: rgba(255,255,255,0.70);
+}
+
+.site-footer .disclaimer{
+  margin-top: 1.25rem;
+  padding-top: 1.15rem;
+  border-top: 1px solid rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.60);
+}
+
+/* Responsive */
+@media (max-width: 980px){
+  .footer-grid{
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px){
+  .site-footer{
+    padding: 2.5rem 0;
+  }
+  .footer-grid{
+    grid-template-columns: 1fr;
+    gap: 1.6rem;
+  }
+}
+
+/* Header – nudge Contact button slightly right */
+.site-header .nav-right .btn-primary {
+  margin-left: 0.75rem;
+}
+
+
