@@ -108,7 +108,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </section>
 
     <section class="section">
-      <div class="container two-col">
+      <div class="container">
         <div>
           <h2>Investment management</h2>
           <p>
@@ -120,51 +120,673 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             The objective is thoughtful construction with an emphasis on after-tax, risk-adjusted outcomes.
           </p>
 
-        <!-- Phase 2B: Island replaces Phase 2A widget container -->
-            <div class="module module--tight">
-              <div class="module-head">
+          <div class="module module--tight">
+            <div class="module-head">
+              <div>
+                <p class="eyebrow">Illustrative</p>
+                <h3 class="module-title">Allocation design</h3>
+                <p class="muted module-sub">
+                  Portfolio construction balances objectives, constraints, tax considerations, and liquidity—then evolves as circumstances change.
+                </p>
+              </div>
+            </div>
+
+            <!-- Allocation block (interactive, no libraries) -->
+            <div class="ccm-widget ccm-alloc" data-ccm-widget="allocation-donut">
+              <div class="ccm-widget-header">
                 <div>
-                  <p class="eyebrow">Illustrative</p>
-                  <h3 class="module-title">Allocation design</h3>
-                  <p class="muted module-sub">
-                    Portfolio construction balances objectives, constraints, tax considerations, and liquidity—then evolves as circumstances change.
+                  <h4 class="ccm-widget-title">Illustrative allocation</h4>
+                  <p class="ccm-widget-subtitle">
+                    Select an illustrative baseline. Actual portfolios are customized.
                   </p>
+                </div>
+
+                <div class="ccm-alloc-controls">
+                  <div class="ccm-tabs" role="tablist" aria-label="Allocation presets">
+                    <button class="ccm-tab" role="tab" aria-selected="true" data-preset="balanced">Balanced</button>
+                    <button class="ccm-tab" role="tab" aria-selected="false" data-preset="conservative">Conservative</button>
+                    <button class="ccm-tab" role="tab" aria-selected="false" data-preset="growth">Growth</button>
+                  </div>
+
+                  <div class="ccm-alloc-actions">
+                    <button class="ccm-tab" type="button" data-toggle-custom aria-pressed="false">Customize</button>
+                    <button class="ccm-tab" type="button" data-reset>Reset</button>
+                  </div>
                 </div>
               </div>
 
-              <div class="module-grid">
-                <div class="chart-placeholder chart-placeholder--donut" role="img" aria-label="Illustrative allocation chart placeholder">
-                  <!-- Optional: /public/images/placeholders/allocation.jpg -->
-                  <!-- <img src="/images/placeholders/allocation.jpg" alt="Illustrative allocation donut chart" loading="lazy" /> -->
-                  <div class="chart-placeholder__inner">
-                    <span class="chart-placeholder__label">Allocation visualization placeholder</span>
+              <div class="ccm-widget-grid">
+                <div class="ccm-viz" data-ccm-viz>
+                  <div class="ccm-donut-wrap" role="img" aria-label="Allocation donut chart">
+                    <div class="ccm-donut-css" data-donut></div>
+                    <!-- Subtle inner illustration layer to give the presets the same “designed” feel as Custom -->
+                    <div class="ccm-donut-illustration" data-donut-illus aria-hidden="true"></div>
+                    <div class="ccm-donut-highlight" data-donut-hl aria-hidden="true"></div>
+                    <div class="ccm-donut-overlay" aria-hidden="true">
+                      <div class="ccm-donut-title" data-center-title>Balanced</div>
+                      <div class="ccm-donut-sub" data-center-sub>Illustrative mix</div>
+                    </div>
                   </div>
+
+                  <noscript>
+                    <p class="small muted">Enable JavaScript to view the allocation visualization.</p>
+                  </noscript>
                 </div>
 
-                <aside class="module-side">
+                <div class="ccm-panel">
+                  <h4>Mix detail</h4>
+                  <p class="ccm-panel-muted">Click a segment to highlight it.</p>
+
+                  <div class="ccm-seg-list" data-seg-list></div>
+
+                  <div class="ccm-custom" data-custom hidden>
+                    <div class="ccm-panel-label">Customize (illustrative)</div>
+
+                    <div class="ccm-slider">
+                      <label for="alloc-equity">Equity <span class="ccm-slider-val" data-val="Equity">55%</span></label>
+                      <input id="alloc-equity" type="range" min="0" max="95" step="1" value="55" data-slider="Equity" />
+                    </div>
+
+                    <div class="ccm-slider">
+                      <label for="alloc-fi">Fixed income <span class="ccm-slider-val" data-val="Fixed Income">30%</span></label>
+                      <input id="alloc-fi" type="range" min="0" max="95" step="1" value="30" data-slider="Fixed Income" />
+                    </div>
+
+                    <div class="ccm-slider">
+                      <label for="alloc-ra">Real assets <span class="ccm-slider-val" data-val="Real Assets">10%</span></label>
+                      <input id="alloc-ra" type="range" min="0" max="50" step="1" value="10" data-slider="Real Assets" />
+                    </div>
+
+                    <p class="small muted" style="margin: 8px 0 0 0;">
+                      Cash is computed as the remainder to keep totals at 100%.
+                    </p>
+                  </div>
+
+                  <div class="ccm-widget-footer">
+                    Illustrations are simplified and for discussion purposes only.
+                  </div>
+                </div>
+              </div>
+
+              <div class="ccm-below">
+                <div class="ccm-below-card">
                   <h4 class="module-side-title">Built around the client</h4>
                   <ul class="clean-list">
                     <li>Risk tolerance, horizon, and liquidity needs</li>
                     <li>Tax awareness and after-tax outcomes</li>
                     <li>Mix of proprietary strategies, managers, and ETFs when appropriate</li>
                   </ul>
-                </aside>
+                </div>
               </div>
+
+              <!-- Page-scoped polish + overrides to ensure the donut renders visibly even with global SVG reset rules -->
+              <style is:inline>
+                .ccm-alloc {
+                  width: 100%;
+                  max-width: none;
+                  padding: 20px;
+                  border-radius: 18px;
+                }
+
+                .ccm-alloc-controls {
+                  display: flex;
+                  gap: 10px;
+                  flex-wrap: wrap;
+                  align-items: center;
+                  justify-content: flex-end;
+                }
+                .ccm-alloc-actions { display: inline-flex; gap: 8px; flex-wrap: wrap; }
+
+                /* Make the overall box less compact */
+                .ccm-widget[data-ccm-widget="allocation-donut"] .ccm-widget-grid {
+                  grid-template-columns: 1.55fr 0.45fr;
+                  gap: 18px;
+                  /* Critical: remove the "gap under chart" when the right panel grows */
+                  align-items: stretch;
+                }
+
+                /* Make the visualization column stretch to match the right panel height */
+                .ccm-widget[data-ccm-widget="allocation-donut"] .ccm-viz {
+                  height: 100%;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: stretch;
+                }
+
+                .ccm-widget[data-ccm-widget="allocation-donut"] .ccm-donut-wrap {
+                  height: 100%;
+                  min-height: 420px;
+                  display: grid;
+                  place-items: center;
+                }
+
+                /* In Custom, the right panel becomes taller due to sliders.
+                   Cap it to the donut height so the overall row height doesn’t balloon (removes the “blank” space). */
+                .ccm-widget.is-custom-open .ccm-panel {
+                  max-height: 420px;
+                  overflow: auto;
+                  overscroll-behavior: contain;
+                  padding-right: 6px;
+                }
+
+                
+                .ccm-donut-wrap { cursor: pointer; }
+                                .ccm-donut-css {
+                  position: relative;
+                  z-index: 1;
+                  transition: transform 220ms ease;
+                }
+                .ccm-donut-css.is-seg-active {
+                  transform: scale(1.015);
+                }
+                .ccm-donut-highlight {
+                  width: 360px;
+                  height: 360px;
+                  border-radius: 999px;
+                  position: absolute;
+                  z-index: 2;
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%) scale(1);
+                  /* default hidden until interaction */
+                  opacity: 0;
+                  transition: opacity 160ms ease, transform 220ms ease;
+                  pointer-events: none;
+                  /* subtle glow */
+                  filter: drop-shadow(0 16px 34px rgba(75,33,66,0.35));
+                }
+                .ccm-donut-highlight::after {
+                  content: "";
+                  position: absolute;
+                  inset: 62px;
+                  border-radius: 999px;
+                  background: rgba(255,255,255,0.96);
+                  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.06);
+                }
+
+.ccm-donut-wrap.is-active .ccm-donut-highlight {
+                  opacity: 0.55;
+                  transform: translate(-50%, -50%) scale(1.01);
+                }
+
+                /* Reduce dead space when Customize is opened */
+                .ccm-custom { margin-top: 6px; padding-top: 6px; }
+                .ccm-widget-footer { margin-top: 8px; }
+
+
+
+                /* In Custom mode, keep the grid height stable (avoid extra white space) by
+                   capping the side panel instead of inflating the chart column. */
+                .ccm-widget.is-custom-open .ccm-side {
+                  max-height: 420px;
+                  overflow: auto;
+                  overscroll-behavior: contain;
+                  padding-right: 8px;
+                }
+
+/* CSS donut (avoids SVG rendering issues) */
+                .ccm-donut-wrap {
+                  width: 420px;
+                  height: 420px;
+                  position: relative;
+                  display: grid;
+                  place-items: center;
+                  padding: 6px 0;
+                }
+                .ccm-donut-css {
+                  width: 360px;
+                  height: 360px;
+                  border-radius: 999px;
+                  /* actual segment colors are set dynamically in JS */
+                  background: conic-gradient(#4b2142 0% 55%, #1f3b5c 55% 85%, #5a1b28 85% 95%, #64748b 95% 100%);
+                  position: relative;
+                  box-shadow:
+                    0 28px 70px rgba(0,0,0,0.12),
+                    inset 0 0 0 1px rgba(0,0,0,0.06);
+                  overflow: hidden;
+                }
+                /* Soft “designed” finish on all presets (Balanced/Conservative/Growth/Custom) */
+                .ccm-donut-css::before {
+                  content: "";
+                  position: absolute;
+                  inset: 0;
+                  border-radius: 999px;
+                  background:
+                    radial-gradient(120% 120% at 22% 18%, rgba(255,255,255,0.35), rgba(255,255,255,0) 55%),
+                    radial-gradient(140% 140% at 72% 78%, rgba(0,0,0,0.18), rgba(0,0,0,0) 60%);
+                  mix-blend-mode: soft-light;
+                  pointer-events: none;
+                }
+                .ccm-donut-css::after {
+                  content: "";
+                  position: absolute;
+                  inset: 62px;
+                  border-radius: 999px;
+                  background: rgba(255,255,255,0.96);
+                  box-shadow:
+                    inset 0 0 0 1px rgba(0,0,0,0.06),
+                    inset 0 18px 28px rgba(0,0,0,0.06);
+                }
+
+                /* Inner illustration layer (subtle wedge + gradients inside the hole) */
+                .ccm-donut-illustration {
+                  position: absolute;
+                  z-index: 1;
+                  inset: 62px;
+                  border-radius: 999px;
+                  background:
+                    conic-gradient(from -90deg,
+                      rgba(75,33,66,0.10) 0 var(--pEquity, 55%),
+                      rgba(31,59,92,0.10) var(--pEquity, 55%) calc(var(--pEquity, 55%) + var(--pFI, 30%)),
+                      rgba(90,27,40,0.10) calc(var(--pEquity, 55%) + var(--pFI, 30%)) calc(var(--pEquity, 55%) + var(--pFI, 30%) + var(--pReal, 10%)),
+                      rgba(100,116,139,0.10) calc(var(--pEquity, 55%) + var(--pFI, 30%) + var(--pReal, 10%)) 100%
+                    ),
+                    radial-gradient(80% 80% at 30% 25%, rgba(255,255,255,0.9), rgba(255,255,255,0) 60%),
+                    radial-gradient(90% 90% at 70% 75%, rgba(0,0,0,0.10), rgba(0,0,0,0) 62%);
+                  opacity: 1;
+                  pointer-events: none;
+                }
+                                .ccm-donut-overlay {
+                  position: absolute;
+                  inset: 0;
+                  display: grid;
+                  place-items: center;
+                  padding: 6px 0;
+                  text-align: center;
+                  pointer-events: none;
+                  /* Keep text inside the inner hole so it never overlaps the ring */
+                  padding: 0 84px;
+                }
+                                .ccm-donut-title {
+                  font-size: 14px;
+                  font-weight: 650;
+                  color: rgba(26,26,26,0.92);
+                  letter-spacing: -0.01em;
+                  line-height: 1.15;
+                  max-width: 100%;
+                  white-space: nowrap;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  transform: translateY(-6px);
+                }
+                .ccm-donut-sub { display: none; }
+
+/* Calm legend */
+                .ccm-widget[data-ccm-widget="allocation-donut"] .ccm-seg-btn {
+                  background: rgba(255,255,255,0.72);
+                  border-color: rgba(0,0,0,0.08);
+                }
+                .ccm-widget[data-ccm-widget="allocation-donut"] .ccm-seg-btn:hover {
+                  border-color: rgba(75,33,66,0.22);
+                }
+                .ccm-widget[data-ccm-widget="allocation-donut"] .ccm-seg-btn[aria-pressed="true"] {
+                  box-shadow: 0 0 0 2px rgba(75,33,66,0.12);
+                }
+
+                /* Below card (replaces cramped side panel) */
+                .ccm-below { margin-top: 14px; }
+                .ccm-below-card {
+                  padding: 18px 18px 14px;
+                  border: 1px solid rgba(0,0,0,0.07);
+                  border-radius: 14px;
+                  background: rgba(255,255,255,0.70);
+                }
+
+                /* Sliders */
+                .ccm-custom { margin-top: 14px; padding-top: 12px; border-top: 1px solid rgba(0,0,0,0.08); }
+                .ccm-slider { margin: 10px 0; }
+                .ccm-slider label {
+                  display: flex;
+                  justify-content: space-between;
+                  gap: 10px;
+                  font-size: 0.9rem;
+                  color: rgba(26,26,26,0.78);
+                }
+                .ccm-slider input[type="range"] { width: 100%; }
+
+                /* Subtle entrance */
+                .ccm-alloc.is-ready { animation: ccmAllocIn 260ms ease both; }
+                @keyframes ccmAllocIn { from { opacity: 0.01; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+                @media (max-width: 860px) {
+                  .ccm-alloc-controls { justify-content: flex-start; }
+                  .ccm-widget[data-ccm-widget="allocation-donut"] .ccm-widget-grid {
+                    grid-template-columns: 1fr;
+                  }
+                  .ccm-widget[data-ccm-widget="allocation-donut"] .ccm-viz { min-height: 320px; }
+                  .ccm-widget[data-ccm-widget="allocation-donut"] .ccm-donut-wrap { width: 340px; height: 340px; }
+                  .ccm-widget[data-ccm-widget="allocation-donut"] .ccm-donut-css { width: 300px; height: 300px; }
+                }
+              
+
+                /* (Removed) legacy sizing overrides for an unused .ccm-root selector. */
+</style>
+
+              <script is:inline>
+                (function () {
+                  function init() {
+                  const root = document.querySelector('[data-ccm-widget="allocation-donut"]');
+                  if (!root) return;
+
+                  const donutEl = root.querySelector('[data-donut]');
+                  const donutHl = root.querySelector('[data-donut-hl]');
+                  const donutWrap = root.querySelector('.ccm-donut-wrap');
+                  const segList = root.querySelector('[data-seg-list]');
+                  const tabs = Array.from(root.querySelectorAll('.ccm-tab[role="tab"]'));
+                  const centerTitle = root.querySelector('[data-center-title]');
+                  const centerSub = root.querySelector('[data-center-sub]');
+
+                  const btnToggleCustom = root.querySelector('[data-toggle-custom]');
+                  const btnReset = root.querySelector('[data-reset]');
+                  const customWrap = root.querySelector('[data-custom]');
+                  const sliders = Array.from(root.querySelectorAll('input[data-slider]'));
+                  const valSpans = Array.from(root.querySelectorAll('[data-val]'));
+
+                  const COLORS = {
+                    Equity: '#4b2142',
+                    'Fixed Income': '#1f3b5c',
+                    'Real Assets': '#5a1b28',
+                    Cash: '#64748b'
+                  };
+
+                  const PRESETS = {
+                    balanced: {
+                      title: 'Balanced',
+                      subtitle: 'Illustrative mix',
+                      data: [
+                        { label: 'Equity', value: 55 },
+                        { label: 'Fixed Income', value: 30 },
+                        { label: 'Real Assets', value: 10 },
+                        { label: 'Cash', value: 5 }
+                      ]
+                    },
+                    conservative: {
+                      title: 'Conservative',
+                      subtitle: 'Lower volatility tilt',
+                      data: [
+                        { label: 'Equity', value: 35 },
+                        { label: 'Fixed Income', value: 50 },
+                        { label: 'Real Assets', value: 10 },
+                        { label: 'Cash', value: 5 }
+                      ]
+                    },
+                    growth: {
+                      title: 'Growth',
+                      subtitle: 'Higher equity tilt',
+                      data: [
+                        { label: 'Equity', value: 70 },
+                        { label: 'Fixed Income', value: 15 },
+                        { label: 'Real Assets', value: 10 },
+                        { label: 'Cash', value: 5 }
+                      ]
+                    }
+                  };
+
+                  function setActiveSegment(label) {
+                    segList.querySelectorAll('button.ccm-seg-btn').forEach(b => {
+                      const is = b.getAttribute('data-label') === label;
+                      b.setAttribute('aria-pressed', is ? 'true' : 'false');
+                    });
+
+                    const data = getCurrentData();
+                    buildHighlightGradient(label, data);
+                  }
+
+                  function setTabState(presetKey) {
+                    tabs.forEach(t => t.setAttribute('aria-selected', t.dataset.preset === presetKey ? 'true' : 'false'));
+                  }
+
+                  function updateValLabelsFromData(data) {
+                    valSpans.forEach(span => {
+                      const key = span.getAttribute('data-val');
+                      const found = data.find(d => d.label === key);
+                      if (found) span.textContent = `${found.value}%`;
+                    });
+                  }
+
+                  function setSlidersFromData(data) {
+                    sliders.forEach(s => {
+                      const key = s.getAttribute('data-slider');
+                      const found = data.find(d => d.label === key);
+                      if (found) s.value = String(found.value);
+                    });
+                    updateValLabelsFromData(data);
+                  }
+
+                  function buildSegList(data) {
+                    segList.innerHTML = '';
+                    data.forEach((seg, idx) => {
+                      const btn = document.createElement('button');
+                      btn.className = 'ccm-seg-btn';
+                      btn.type = 'button';
+                      btn.setAttribute('data-label', seg.label);
+                      btn.setAttribute('aria-pressed', idx === 0 ? 'true' : 'false');
+
+                      btn.innerHTML = `
+                        <span class="ccm-swatch" style="background:${COLORS[seg.label] || '#334155'}"></span>
+                        <span class="ccm-seg-label">${seg.label}</span>
+                        <span class="ccm-seg-pct">${seg.value}%</span>
+                      `;
+
+                      btn.addEventListener('click', () => setActiveSegment(seg.label));
+                      segList.appendChild(btn);
+                    });
+                  }
+
+                  function buildHighlightGradient(activeLabel, data) {
+                    if (!donutHl) return;
+                    if (!activeLabel) { donutWrap?.classList.remove('is-active'); return; }
+
+                    let acc = 0;
+                    const stops = data.map(seg => {
+                      const start = acc;
+                      const end = acc + seg.value;
+                      acc = end;
+
+                      const color = (seg.label === activeLabel) ? (COLORS[seg.label] || '#334155') : 'rgba(0,0,0,0)';
+                      return `${color} ${start}% ${end}%`;
+                    }).join(', ');
+
+                    donutHl.style.background = `conic-gradient(${stops})`;
+                    donutWrap?.classList.add('is-active');
+                  }
+
+                  function buildDonutGradient(data) {
+                    if (!donutEl) return;
+
+                    // Build conic-gradient stops
+                    let acc = 0;
+                    const stops = data.map(seg => {
+                      const start = acc;
+                      const end = acc + seg.value;
+                      acc = end;
+                      const color = COLORS[seg.label] || '#334155';
+                      return `${color} ${start}% ${end}%`;
+                    }).join(', ');
+
+                    donutEl.style.background = `conic-gradient(${stops})`;
+                  }
+
+                  function getCurrentData() {
+                    const rows = Array.from(segList.querySelectorAll('.ccm-seg-btn'));
+                    if (!rows.length) return PRESETS.balanced.data.map(x => ({ ...x }));
+                    return rows.map(btn => {
+                      const label = btn.getAttribute('data-label');
+                      const pct = btn.querySelector('.ccm-seg-pct')?.textContent?.replace('%','') ?? '0';
+                      return { label, value: Number(pct) || 0 };
+                    });
+                  }
+
+                  function renderFromData(data) {
+                    buildDonutGradient(data);
+                    buildSegList(data);
+                    const pressed = segList.querySelector('button.ccm-seg-btn[aria-pressed="true"]');
+                    const firstLabel = data[0]?.label || 'Equity';
+                    const activeLabel = pressed?.getAttribute('data-label') || firstLabel;
+                    setActiveSegment(activeLabel);
+                    buildHighlightGradient(activeLabel, data);
+                    if (!customWrap.hidden) setSlidersFromData(data);
+                  }
+
+                  function animateTo(nextData, duration = 380) {
+                    const current = getCurrentData();
+                    const start = performance.now();
+
+                    const fromMap = new Map(current.map(d => [d.label, d.value]));
+                    const toMap = new Map(nextData.map(d => [d.label, d.value]));
+
+                    function frame(now) {
+                      const t = Math.min(1, (now - start) / duration);
+                      const e = t < 0.5 ? 2*t*t : 1 - Math.pow(-2*t + 2, 2) / 2;
+
+                      const blended = nextData.map(d => {
+                        const a = fromMap.get(d.label) ?? 0;
+                        const b = toMap.get(d.label) ?? 0;
+                        return { label: d.label, value: Math.round(a + (b - a) * e) };
+                      });
+
+                      const sumNonCash = blended.filter(x => x.label !== 'Cash').reduce((s, x) => s + x.value, 0);
+                      const cash = Math.max(0, 100 - sumNonCash);
+                      const final = blended.map(x => x.label === 'Cash' ? { label: 'Cash', value: cash } : x);
+
+                      renderFromData(final);
+
+                      if (t < 1) requestAnimationFrame(frame);
+                    }
+
+                    requestAnimationFrame(frame);
+                  }
+
+                  function setPreset(key) {
+                    const preset = PRESETS[key] || PRESETS.balanced;
+                    setTabState(key);
+
+                    if (centerTitle) centerTitle.textContent = preset.title;
+                    if (centerSub) centerSub.textContent = preset.subtitle;
+
+                    setSlidersFromData(preset.data);
+                    animateTo(preset.data, 380);
+                  }
+
+                  function computeCustomFromSliders() {
+                    const equity = Number(root.querySelector('#alloc-equity')?.value || 0);
+                    const fi = Number(root.querySelector('#alloc-fi')?.value || 0);
+                    const ra = Number(root.querySelector('#alloc-ra')?.value || 0);
+
+                    const sum = equity + fi + ra;
+                    const cash = Math.max(0, 100 - sum);
+
+                    return [
+                      { label: 'Equity', value: equity },
+                      { label: 'Fixed Income', value: fi },
+                      { label: 'Real Assets', value: ra },
+                      { label: 'Cash', value: cash }
+                    ];
+                  }
+
+                  
+                  function labelFromAngle(x, y, data) {
+                    // x,y are relative to center. Convert to degrees (0 at top, clockwise)
+                    let deg = Math.atan2(y, x) * (180 / Math.PI);
+                    deg = (deg + 450) % 360; // shift so 0 is top
+                    const pct = (deg / 360) * 100;
+
+                    let acc = 0;
+                    for (const seg of data) {
+                      const start = acc;
+                      const end = acc + seg.value;
+                      if (pct >= start && pct < end) return seg.label;
+                      acc = end;
+                    }
+                    return data[0]?.label;
+                  }
+
+function setCustomMode(on) {
+                    btnToggleCustom.setAttribute('aria-pressed', on ? 'true' : 'false');
+                    customWrap.hidden = !on;
+                    // Layout-only: cap side panel height in Custom to prevent extra white space.
+                    root.classList.toggle('is-custom-open', !!on);
+
+                    if (on) {
+                      tabs.forEach(t => t.setAttribute('aria-selected', 'false'));
+                      if (centerTitle) centerTitle.textContent = 'Custom';
+                      if (centerSub) centerSub.textContent = 'Illustrative mix';
+
+                      const current = getCurrentData();
+                      setSlidersFromData(current);
+                    }
+                  }
+
+                  // Preset tabs
+                  tabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                      setCustomMode(false);
+                      setPreset(tab.dataset.preset);
+                    });
+                  });
+
+                  // Customize toggle
+                  btnToggleCustom.addEventListener('click', () => {
+                    const on = btnToggleCustom.getAttribute('aria-pressed') !== 'true';
+                    setCustomMode(on);
+                    if (on) renderFromData(getCurrentData());
+                  });
+
+                  // Reset
+                  btnReset.addEventListener('click', () => {
+                    setCustomMode(false);
+                    setPreset('balanced');
+                  });
+
+                  // Slider changes
+                  sliders.forEach(sl => {
+                    sl.addEventListener('input', () => {
+                      const data = computeCustomFromSliders();
+                      updateValLabelsFromData(data);
+                      renderFromData(data);
+                    });
+                  });
+
+                  // Donut hover/click interaction
+                  if (donutWrap) {
+                    const onPointer = (e) => {
+                      const rect = donutWrap.getBoundingClientRect();
+                      const cx = rect.left + rect.width / 2;
+                      const cy = rect.top + rect.height / 2;
+
+                      const x = (e.clientX ?? 0) - cx;
+                      const y = (e.clientY ?? 0) - cy;
+
+                      const data = getCurrentData();
+                      const label = labelFromAngle(x, y, data);
+                      if (label) setActiveSegment(label);
+                    };
+
+                    donutWrap.addEventListener('mousemove', onPointer);
+                    donutWrap.addEventListener('click', onPointer);
+                    donutWrap.addEventListener('mouseleave', () => {
+                      // keep the currently selected legend item highlighted; if none, default to first
+                      const pressed = segList.querySelector('button.ccm-seg-btn[aria-pressed="true"]');
+                      const label = pressed?.getAttribute('data-label') || getCurrentData()[0]?.label;
+                      buildHighlightGradient(label, getCurrentData());
+                    });
+                  }
+
+                  // Ready + initial
+                  root.classList.add('is-ready');
+                  setPreset('balanced');
+                }
+
+                  if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', init, { once: true });
+                  } else {
+                    init();
+                  }
+                })();
+              </script>
             </div>
         </div>
-
-        <aside class="side-card">
-          <div class="card">
-            <h3>Common areas of focus</h3>
-            <ul class="checklist">
-              <li>Convertible securities</li>
-              <li>Community bank stocks</li>
-              <li>Real estate investment trusts (REITs)</li>
-              <li>Selective use of best-of-breed managers and passive exposures where appropriate</li>
-            </ul>
-          </div>
-        </aside>
-      </div>
+</div>
     </section>
 
     <section class="section section-alt">
